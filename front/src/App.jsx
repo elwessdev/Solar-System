@@ -1,8 +1,21 @@
+// Components
+import Home from './Home/home';
+import Auth from './Auth/auth';
+import News from './News/news';
+import Quiz from './Quiz/quiz';
+import Education from './Education/education';
+import Admin from './Admin/admin';
+
 
 function App() {
   return (
     <div className='app'>
-      <h1>Home</h1>
+      <Home />
+      <Auth />
+      <News />
+      <Quiz />
+      <Education />
+      <Admin />
     </div>
   )
 }
