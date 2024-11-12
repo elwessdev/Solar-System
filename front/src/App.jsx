@@ -10,12 +10,12 @@ import Admin from './Admin/admin';
 function App() {
   return (
     <div className='app'>
-      <Home />
       <Auth />
+      {/* <Home />
       <News />
       <Quiz />
       <Education />
-      <Admin />
+      <Admin /> */}
     </div>
   )
 }
