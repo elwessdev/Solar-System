@@ -12,7 +12,7 @@ const Auth = () => {
           <form>
             <h1>Create Account</h1>
             {/* icons */}
-            <div className="social-icons">
+            {/* <div className="social-icons">
               <a href="#" className="icon">
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
@@ -25,7 +25,7 @@ const Auth = () => {
               <a href="#" className="icon">
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
-            </div>
+            </div> */}
             <span>or use your email for registration</span>
             <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />
@@ -38,7 +38,7 @@ const Auth = () => {
           <form>
             <h1>Sign In</h1>
             {/* Social icons */}
-            <div className="social-icons">
+            {/* <div className="social-icons">
               <a href="#" className="icon">
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
@@ -51,7 +51,7 @@ const Auth = () => {
               <a href="#" className="icon">
                 <i className="fa-brands fa-linkedin-in"></i>
               </a>
-            </div>
+            </div> */}
             <span>or use your email for login</span>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
