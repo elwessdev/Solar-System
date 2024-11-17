@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+body{
+    background: url('../assets/home-back.jpg');
+    background-size: cover;
+    background-position: center;
+    display: inline !important;
+    user-select: none;
+}
+*{
+    font-family: "Orbitron", sans-serif;
+}
+.home{
+    // padding: 15px;
+    // padding-top: 30px;
+}
+.planets{
+    height: 100vh !important;
+    max-width: 1195px;
+    .planet{
+        position: relative;
+        .img{
+            width: 500px !important;
+            margin: 0 auto;
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -60%);
+            transition: all .2s;
+            img{
+                width: 100% !important;
+                animation: rotate 80s infinite linear;
+                @keyframes rotate {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+            &.show_details{
+                transform: translate(-50%, -60%) scale(2);
+            }
+        }
+        
+        .details{
+            overflow: hidden;
+            position: absolute;
+            bottom: 0;
+            padding: 20px;
+            left: 0;
+            width: 100%;
+            .list{
+                display: flex;
+                grid-gap: 90px;
+                float: left;
+                p{
+                    color: #837f7f;
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+                h3{
+                    color: #FFF;
+                    font-size: 35px;
+                    font-weight: 600;
+                }
+            }
+            .view-more{
+                float: right;
+                border: 1px solid rgb(255 255 255 / 38%);
+                backdrop-filter: blur(1px);
+                background: none;
+                color: #FFF;
+                height: fit-content;
+                font-weight: 600;
+                font-size: 15px;
+                padding: 25px 35px;
+                display: flex;
+                cursor: pointer;
+                transition: all 0.2s;
+                background-color: rgba(255, 255, 255, 0.2);
+                &:hover{
+                    backdrop-filter: blur(4px);
+                    border-color: #FFF;
+                }
+                svg{
+                    width: 18px;
+                    height: 18px;
+                    margin-left: 7px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        }
+    }
+    .swiper-button-next, .swiper-button-prev {
+        z-index: 10;
+    }
+    .swiper-button-next,.swiper-button-prev{
+        padding: 10px;
+        display: flex;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        border: 1px solid rgb(255 255 255 / 35%);
+        backdrop-filter: blur(1px);
+        color: #FFF;
+        font-size: 12px;
+        top: var(--swiper-navigation-top-offset, 41%) !important;
+        transition: all .2s;
+        &:hover{
+            border-color: #FFF;
+        }
+        &:after{
+            font-size: 17px;
+            position: relative;
+            top: 2px;
+        }
+    }
+}
+
+
+.show_details_hide{
+    transition: all .2s;
+    opacity: 0;
+}
+
+.details-planet{
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    top: 100vh;
+    transition: all 0.3s;
+    background: linear-gradient(0deg, rgb(0 0 0 / 97%) 71%, rgb(0 0 0) 71%, rgb(0 0 0 / 0%) 94%);
+    padding: 70px;
+    &.showIt{
+        top: 0;
+    }
+    .close{
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        z-index: 60;
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(1px);
+        color: #FFF;
+        font-size: 12px;
+        transition: all 0.2s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        svg{
+            font-size: 20px;
+        }
+        &:hover{
+            border-color: #FFF;
+        }
+    }
+    .infos{
+        h1{
+            color: #FFF;
+            font-weight: 600;
+            font-size: 95px;
+        }
+        p{
+            color: #FFF;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+    }
+    .galleries{
+        margin-top: 50px;
+        display: flex;
+        grid-gap: 15px;
+        flex-wrap: wrap;
+        // .swiper-button-next,.swiper-button-prev{
+        //     padding: 10px;
+        //     display: flex;
+        //     border-radius: 50%;
+        //     width: 50px;
+        //     height: 50px;
+        //     border: 1px solid rgb(255 255 255 / 35%);
+        //     backdrop-filter: blur(1px);
+        //     color: #FFF;
+        //     font-size: 12px;
+        //     top: var(--swiper-navigation-top-offset, 41%) !important;
+        //     transition: all .2s;
+        //     &:hover{
+        //         border-color: #FFF;
+        //     }
+        //     &:after{
+        //         font-size: 17px;
+        //         position: relative;
+        //         top: 2px;
+        //     }
+        // }
+        // img{
+        //     width: 315px;
+        //     margin: 0 auto;
+        //     display: block;
+        // }
+        .gall{
+            padding: 10px;
+            width: 275px;
+            border: 1px solid #ffffff99;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .videos{
+        margin-top: 50px;
+        display: flex;
+        grid-gap: 15px;
+        flex-wrap: wrap;
+        .video{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
