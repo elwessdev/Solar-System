@@ -10,12 +10,13 @@ import QuizBoard from './Quiz/QuizBoard';
 function App() {
   return (
     <div className='app'>
-      <QuizBoard/>
+      {/* <QuizBoard/> */}
       {/* <Auth /> */}
       {/* <Home />
       <News />
       <Education />
       <Admin /> */}
+      <Home />
     </div>
   )
 }

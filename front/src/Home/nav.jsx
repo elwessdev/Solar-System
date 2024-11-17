@@ -1,9 +1,9 @@
 import { FaSearch } from 'react-icons/fa';
 import "./nav.scss";
 
-const Navbar = ({onShowPlanetDetails}) => {
+const Navbar = ({openWindow}) => {
     return (
-        <nav className={`navbar ${onShowPlanetDetails ? 'show_details_hide' : ''}`}>
+        <nav className={`navbar ${openWindow ? 'hide_nav' : ''}`}>
             <div className="navbar__logo">Solar System</div>
             <div className="rg">
                 <div className="search">
