@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; 
 import "./Auth.scss";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { jwtDecode } from "jwt-decode";
+import { GoogleLogin } from "@react-oauth/google";
 
 const Auth = () => {
   const [isActive, setIsActive] = useState(false);
@@ -7,14 +11,14 @@ const Auth = () => {
   return (
     <div className="auth">
       <div className={`container ${isActive ? "active" : ""}`} id="container">
-        {/* Sign Up  */}
+        {/* Sign Up */}
         <div className="form-container sign-up">
           <form>
             <h1>Create Account</h1>
-            {/* icons */}
+            {/* Social Icons */}
             <div className="social-icons">
               <a href="#" className="icon">
-                <i className="fa-brands fa-google-plus-g"></i>
+                <i className="fa-brands fa-google"></i>
               </a>
               <a href="#" className="icon">
                 <i className="fa-brands fa-facebook-f"></i>
@@ -33,14 +37,15 @@ const Auth = () => {
             <button>Sign Up</button>
           </form>
         </div>
+
         {/* Sign In */}
         <div className="form-container sign-in">
           <form>
             <h1>Sign In</h1>
-            {/* Social icons */}
+            {/* Social Icons */}
             <div className="social-icons">
-              <a href="#" className="icon">
-                <i className="fa-brands fa-google-plus-g"></i>
+            <a href="#" className="icon">
+                <i className="fa-brands fa-google"></i>
               </a>
               <a href="#" className="icon">
                 <i className="fa-brands fa-facebook-f"></i>
@@ -55,11 +60,12 @@ const Auth = () => {
             <span>or use your email for login</span>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <a href="#">Forgot Your Password?</a>
+            <Link to="/ForgotPasswor">Forgot Your Password?</Link> {/* Correction de l'URL */}
             <button>Sign In</button>
           </form>
         </div>
-        {/* Toggle container */}
+
+        {/* Toggle Container */}
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
