@@ -2,18 +2,18 @@
 import Home from './Home/home';
 import Auth from './Auth/auth';
 import News from './News/news';
-import Quiz from './Quiz/quiz';
 import Education from './Education/education';
 import Admin from './Admin/admin';
+import QuizBoard from './Quiz/QuizBoard';
 
 
 function App() {
   return (
     <div className='app'>
-      <Auth />
+      <QuizBoard/>
+      {/* <Auth /> */}
       {/* <Home />
       <News />
-      <Quiz />
       <Education />
       <Admin /> */}
     </div>
