@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+$primary-color: #00aaff;
+$secondary-color: #121212;
+$accent-color: #ff5733;
+$background-color: #0d0d0d;
+$text-color: #e0e0e0;
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+.solar-system-news {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+
+  .news-header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 3rem;
+      color: $primary-color;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $text-color;
+    }
+  }
+
+  .news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    overflow-y: scroll;
+    max-height: 80vh;
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $primary-color;
+      border-radius: 6px;
+      border: 3px solid $background-color;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $background-color;
+      border-radius: 6px;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background: $primary-color;
+    }
+
+    .news-card {
+      cursor: pointer;
+      background-color: $secondary-color;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .news-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .news-content {
+        padding: 1rem;
+
+        .news-title {
+          font-size: 1.5rem;
+          color: $accent-color;
+          margin-bottom: 0.5rem;
+        }
+
+        .news-date {
+          font-size: 0.9rem;
+          margin-bottom: 1rem;
+        }
+
+        .news-description {
+          font-size: 1rem;
+          color: $text-color;
+        }
+
+        .news-viewmore {
+          margin-top: 20px;
+          font-size: 1rem;
+          color: #00aaff;
+          text-decoration: none;
+          transition: all 0.1s ease;
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          a{
+            &:hover {
+                color: #00aaff;
+                text-shadow: 1px 1px 5px $accent-color;
+              }
+              &:active{
+                color: #ff5733
+              }
+              &:visited{
+                color: #00aaff
+              }
+          }
+        }
+      }
+    }
+  }
+}
