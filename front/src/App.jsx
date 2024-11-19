@@ -1,24 +1,11 @@
-// Components
-import Home from './Home/home';
-import Auth from './Auth/auth';
-import News from './News/news';
-import Education from './Education/education';
-import Admin from './Admin/admin';
-import QuizBoard from './Quiz/QuizBoard';
-
-
+import React from 'react';
+import RouterComponent from './Auth/router';
 function App() {
   return (
     <div className='app'>
-      {/* <QuizBoard/> */}
-      {/* <Auth /> */}
-      {/* <Home />
-      <News />
-      <Education />
-      <Admin /> */}
-      <Home />
+      <RouterComponent />
     </div>
-  )
+  );
 }
 
 export default App;
