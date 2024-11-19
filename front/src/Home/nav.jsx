@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa';
 import "./nav.scss";
 
-const Navbar = ({openWindow}) => {
+const Navbar = ({navHiding}) => {
     return (
-        <nav className={`navbar ${openWindow ? 'hide_nav' : ''}`}>
+        <nav className={`navbar ${navHiding ? 'hide_nav' : ''}`}>
             <div className="navbar__logo">Solar System</div>
             <div className="rg">
                 <div className="search">
@@ -11,13 +12,14 @@ const Navbar = ({openWindow}) => {
                     <FaSearch className="navbar__search-icon" />
                 </div>
                 <ul className="links">
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#quiz">Quiz</a></li>
-                    <li><a href="#learn">Learn</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/news">News</Link></li>
+                    <li><Link to="/quiz">Quiz</Link></li>
+                    <li><Link to="/learn">Learn</Link></li>
                 </ul>
                 <div className="buttons">
-                    <button className="btn login">Login</button>
-                    <button className="btn signup">Sign Up</button>
+                    <Link className="btn login" to="/login">Login</Link>
+                    <Link className="btn signup" to="/login">Sign Up</Link>
                 </div>
             </div>
         </nav>

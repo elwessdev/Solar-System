@@ -12,9 +12,11 @@
     top: 20px;
     transform: translateX(-50%);
     &__logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.7);
+        text-transform: uppercase;
     }
     .rg{
         display: flex;
@@ -64,7 +66,7 @@
         gap: 1rem;
         .btn {
             padding: 9px 27px;
-            border-radius: 7px;
+            // border-radius: 7px;
             cursor: pointer;
             transition: transform 0.2s ease, background 0.3s ease;
             background: none;
@@ -72,8 +74,11 @@
             border: 1px solid #FFF;
             font-size: 14px;
             font-weight: 700;
+            &:hover{
+                background: rgba(201, 201, 201, 0.1803921569);
+            }
             &:active {
-            transform: scale(0.95);
+                transform: scale(0.95);
             }
         }
         }

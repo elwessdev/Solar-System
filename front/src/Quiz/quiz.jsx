@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { questions } from "./data/questions";
 import "./quiz.scss";
 
-const Quiz = ({ updateScore }) => {
+const Quiz = ({ updateScore,quizResult }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [feedback, setFeedback] = useState({});
   const [quizComplete, setQuizComplete] = useState(false);
   const [answers, setAnswers] = useState([]);
-  const navigate = useNavigate();
 
   const handleOptionChange = (option) => {
     if (questions[currentQuestion].isMultiple) {
@@ -25,7 +23,6 @@ const Quiz = ({ updateScore }) => {
 
   const handleSubmit = () => {
     const correctAnswers = questions[currentQuestion].answer;
-
     const isCorrect = questions[currentQuestion].isMultiple
       ? correctAnswers.every((ans) => selectedOptions.includes(ans)) &&
         correctAnswers.length === selectedOptions.length
@@ -41,7 +38,6 @@ const Quiz = ({ updateScore }) => {
       },
       {}
     );
-
     setFeedback(feedbackState);
     setAnswers((prev) => {
       const updated = [...prev];
@@ -59,12 +55,8 @@ const Quiz = ({ updateScore }) => {
         setCurrentQuestion(currentQuestion + 1);
         setSelectedOptions([]);
         setFeedback({});
-      }, 2000);
+      }, 1300);
     }
-  };
-
-  const handleSeeResult = () => {
-    navigate("/result");
   };
 
   const handlePrevious = () => {
@@ -90,9 +82,7 @@ const Quiz = ({ updateScore }) => {
       <h4 className="text-info">
         Question {currentQuestion + 1}/{questions.length}
       </h4>
-
       <h2 className="text-info">{questions[currentQuestion].question}</h2>
-
       <div className="options mt-4">
         {questions[currentQuestion].options.map((option, index) => (
           <div
@@ -154,14 +144,14 @@ const Quiz = ({ updateScore }) => {
             Submit
           </button>
         )}
-        {quizComplete && (
+        {/* {quizComplete && (
           <button
             className="btn btn-success"
-            onClick={handleSeeResult}
+            onClick={e=>quizResult("quizResult")}
             disabled={selectedOptions.length === 0}>
             See Result
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );
