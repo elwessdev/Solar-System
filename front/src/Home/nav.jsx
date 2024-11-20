@@ -15,11 +15,11 @@ const Navbar = ({navHiding}) => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/quiz">Quiz</Link></li>
-                    <li><Link to="/learn">Learn</Link></li>
+                    {/* <li><Link to="/learn">Learn</Link></li> */}
                 </ul>
                 <div className="buttons">
-                    <Link className="btn login" to="/login">Login</Link>
-                    <Link className="btn signup" to="/login">Sign Up</Link>
+                    <Link className="btn login" to="/signin">Login</Link>
+                    <Link className="btn signup" to="/signup">Sign Up</Link>
                 </div>
             </div>
         </nav>

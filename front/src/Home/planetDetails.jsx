@@ -1,5 +1,6 @@
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+import { IoClose } from "react-icons/io5";
 // Assets
 import GallEarth1 from "../assets/gal-earth1.jpg"
 import GallEarth2 from "../assets/gal-earth2.jpg"
@@ -10,10 +11,7 @@ const Home = ({setNavStatus,navStatus}) => {
     return(
         <div className={`planet_details_window ${navStatus ? 'showIt' : ''}`}>
             <div className="close" onClick={e=>setNavStatus(false)}>
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <IoClose />
             </div>
             <div className="details_content">
                 <div className="infos">
