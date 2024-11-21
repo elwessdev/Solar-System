@@ -1,6 +1,8 @@
+import {useContext} from "react";
 import { MdArrowForward } from "react-icons/md";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation} from 'swiper/modules';
+import { UserContext } from "../context/UserContext";
 import 'swiper/swiper-bundle.css';
 import "./home.scss";
 // Components
@@ -11,6 +13,7 @@ import Mars from "../assets/mars.png"
 
 
 const Home = ({setNavStatus,navStatus}) => {
+    const { token } = useContext(UserContext);
     return(
         <div className="home">
             <Swiper className="planets"
@@ -39,7 +42,8 @@ const Home = ({setNavStatus,navStatus}) => {
                                 <h3>5.972×10^24 kg</h3>
                             </div>
                         </div>
-                        {/* <a className="view-more">Login to view more details<MdArrowForward /></a> */}
+                        {/* {token && <a className="view-more" onClick={e=>setNavStatus(true)}>View more details<MdArrowForward /></a>}
+                        {!token && <a className="view-more">Login to view more details<MdArrowForward /></a>} */}
                         <a className="view-more" onClick={e=>setNavStatus(true)}>View more details<MdArrowForward /></a>
                     </div>
                 </SwiperSlide>

@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.DB_URL);
+    await mongoose.connect(process.env.DB_URL, {
+      dbName: "Solar_System"
+    });
     console.log("Connected to DB");
   } catch (error) {
     console.error("DB Failed to connect", error);

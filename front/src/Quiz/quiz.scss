@@ -5,14 +5,20 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  text-align: center;
-  padding: 40px 75px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(01px);
+  width: fit-content;
+  backdrop-filter: blur(1px);
   margin: 0 auto;
   margin-top: 230px;
-  max-width: 750px;
+  text-align: center;
+  background-color: rgba(18, 18, 18, 0.6784313725);
+  border-radius: 10px;
+  transition: all 0.2s;
+  position: relative;
+  box-shadow: 1px 1px 7px 1px rgba(238, 238, 238, 0.23);
+  padding: 45px 75px;
+  .text-info{
+    margin: 0;
+  }
   h2 {
     font-size: 25px;
     margin-top: 7px;
@@ -22,6 +28,7 @@
   .options {
     margin: 0;
     width: 100%;
+    margin-top: 25px;
     div {
       display: flex;
       align-items: center;
@@ -152,26 +159,30 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  text-align: center;
-  padding: 40px 75px;
   width: fit-content;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(01px);
+  backdrop-filter: blur(1px);
   margin: 0 auto;
   margin-top: 230px;
+  text-align: center;
+  background-color: rgba(18, 18, 18, 0.6784313725);
+  border-radius: 10px;
+  transition: all 0.2s;
+  position: relative;
+  box-shadow: 1px 1px 7px 1px rgba(238, 238, 238, 0.23);
+  padding: 45px 75px;
   // Title styling
   .quiz-title {
-    font-size: 70px;
+    font-size: 60px;
     font-weight: bold;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.7);
+    text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.75);
+    margin: 10px 0 25px 0;
   }
 
   // Difficulty section
   .difficulty-section {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     display: flex;
+    align-items: center;
     h2 {
       font-size: 20px;
       margin: 0;
@@ -251,19 +262,22 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  text-align: center;
-  padding: 40px 75px;
   width: fit-content;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(01px);
+  backdrop-filter: blur(1px);
   margin: 0 auto;
   margin-top: 230px;
+  text-align: center;
+  background-color: rgba(18, 18, 18, 0.6784313725);
+  border-radius: 10px;
+  transition: all 0.2s;
+  position: relative;
+  box-shadow: 1px 1px 7px 1px rgba(238, 238, 238, 0.23);
+  padding: 45px 75px;
   h1 {
     font-size: 45px;
     font-weight: bold;
-    margin-bottom: 0;
     text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.7);
+    margin: 0;
   }
   h2 {
     font-size: 25px;

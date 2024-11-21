@@ -1,0 +1,176 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 170px;
+  .form-container {
+    padding-bottom: 40px;
+    text-align: center;
+    background-color: #121212ad;
+    border-radius: 10px;
+    transition: all 0.2s;
+    position: relative;
+    box-shadow: 1px 1px 7px 1px rgb(238 238 238 / 23%);
+    padding: 45px 75px;
+    form {
+      width: 400px;
+      margin-bottom: 20px;
+      h1 {
+        margin-bottom: 10px;
+        margin-top: 0;
+        font-size: 40px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.7);
+      }
+      span {
+        display: block;
+        color: #FFF;
+        font-weight: 500;
+        font-size: 16px;
+        margin: 0;
+        line-height: 1.8;
+        margin-bottom: 19px;
+      }
+      .inpts{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        input {
+          width: 100%;
+          border: none;
+          background: #333;
+          color: #fff;
+          font-size: 14px;
+          outline: none;
+          padding: 13px 10px;
+          height: 29px;
+          &:not(:last-of-type){
+            margin-bottom: 10px;
+          }
+          &::placeholder {
+            color: #aaa;
+          }
+        }
+      }
+      button {
+        padding: 13px 30px;
+        margin-top: 25px;
+        border-radius: 0;
+        cursor: pointer;
+        transition: all .2s;
+        background: none;
+        color: #fff;
+        border: 1px solid #FFF;
+        font-size: 16px;
+        font-weight: 700;
+        width: 100%;
+        &:hover {
+          background: rgba(201, 201, 201, 0.1803921569);
+          box-shadow: 0 6px 15px rgba(0, 173, 181, 0.4)
+        }
+        &.btn-for{
+          margin-top: 15px;
+        }
+      }
+      a {
+        text-decoration: none;
+        font-size: 14px;
+        width: fit-content;
+        display: flex;
+        margin: 15px 0 0 0;
+        font-weight: 600;
+        color: #FFF;
+        transition: all .2s;
+        &:hover {
+          // text-decoration: underline;
+          text-shadow: 2px 2px 8px rgba(0, 255, 255, 0.7);
+        }
+      }
+    }
+    .otp_elm{
+      margin: 0 auto;
+      display: block;
+      margin-top: 0;
+      div{
+        display: block !important;
+      }
+      h2{
+        margin: 0;
+        font-size: 30px;
+        margin-bottom: 8px;
+      }
+      .sub{
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 22px;
+        display: flex;
+        justify-content: center;
+      }
+      .otp-input {
+        height: 40px;
+        margin: 0 5px;
+        font-size: 17px;
+        border-radius: 0;
+        color: #FFF;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        width: 40px !important;
+        background: none;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .otp-input-focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+      }
+      .otp-container span {
+        font-size: 18px;
+        font-weight: bold;
+        color: #666;
+      }
+      button {
+        padding: 13px 30px;
+        margin-top: 25px;
+        border-radius: 0;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: none;
+        color: #fff;
+        border: 1px solid #FFF;
+        font-size: 16px;
+        font-weight: 700;
+        width: fit-content;
+        &:hover {
+          background: rgba(201, 201, 201, 0.1803921569);
+          box-shadow: 0 6px 15px rgba(0, 173, 181, 0.4)
+        }
+      }
+    }
+    .error{
+      color: #ff0000;
+      font-size: 14px;
+      margin-top: 10px;
+      width: 400px;
+    }
+  }
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .form-container {
+      width: 90%;
+      padding: 20px;
+  
+      form {
+        h1 {
+          font-size: 1.5rem;
+        }
+  
+        input,
+        button {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+

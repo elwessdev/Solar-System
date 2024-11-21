@@ -6,13 +6,16 @@ require ("dotenv").config();
 
 connectDB();
 app.use(cors({
-  origin: process.env.FRONT_LINK,
-  credentials: true,
+  // origin: process.env.FRONT_LINK,
+  // credentials: true,
+  origin:'http://localhost:5173', 
+  credentials:true,
+  optionSuccessStatus:200
 }));
 app.use(express.json());
 
 // Apis
-app.use("/",(req,res) => res.send("server is running"));
+// app.use("/",(req,res) => res.send("server is running"));
 app.use('/auth', require('./Routes/Auth'));
 
 // Checking
