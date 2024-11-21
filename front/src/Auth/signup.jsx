@@ -29,7 +29,7 @@ const Signup = () => {
 
   const handleSendCode = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/auth/sendcode",{email});
+      const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/auth/sendcode`,{email});
       console.log(res);
       if(res.data == "Done send mail"){
         setVerifyCode(true);
@@ -41,7 +41,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/auth/signup",{username, email, password, otp});
+      const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/auth/signup`,{username, email, password, otp});
       if(res.data.user&&res.data.token){
         login(res.data.user, res.data.token);
         navigate('/');

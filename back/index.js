@@ -3,12 +3,13 @@ const app = express();
 const cors = require("cors");
 const connectDB = require('./config/db');
 require ("dotenv").config();
+console.log(process.env.FRONT_LINK);
 
 connectDB();
 app.use(cors({
   // origin: process.env.FRONT_LINK,
   // credentials: true,
-  origin:process.env.FRONT_LINK, 
+  origin: `${process.env.FRONT_LINK}`,
   credentials:true,
   optionSuccessStatus:200
 }));
