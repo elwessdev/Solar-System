@@ -8,7 +8,7 @@ connectDB();
 app.use(cors({
   // origin: process.env.FRONT_LINK,
   // credentials: true,
-  origin:'http://localhost:5173', 
+  origin:process.env.FRONT_LINK, 
   credentials:true,
   optionSuccessStatus:200
 }));
