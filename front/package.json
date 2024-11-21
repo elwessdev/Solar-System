@@ -26,7 +26,8 @@
     "react-otp-input": "^3.1.1",
     "react-router-dom": "^6.28.0",
     "sass": "^1.80.6",
-    "sass-loader": "^16.0.3"
+    "sass-loader": "^16.0.3",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
