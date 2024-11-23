@@ -16,39 +16,66 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState([]);
   
-  const checkPassword = () => {
-    if(password&&confirmPassword&&password!=confirmPassword){
-      setError("Password and confirm password are not the same");
-    }
-    if(password.length>0&&password.length<6){
-      setError("Password must be at least 6 characters");
+  const checkingData = () => {
+    if(username.length&&email.length&&password.length&&confirmPassword.length){
+      setErrors([]);
+      let errorsList = [];
+      // console.log("test");
+      if(password.length>=6){
+          if(password.length>=15){
+            errorsList.push("Password must be at most 15 characters");
+          } else {
+            if(confirmPassword != password){
+              errorsList.push("Password and confirm password must be the same");
+            }
+          }
+      } else {
+        errorsList.push("Password must be at least 6 characters");
+      }
+      if(username.length<3){
+        errorsList.push("Username must be at least 3 characters");
+      }
+      if(username.length>15){
+        errorsList.push("Username must be at most 15 characters");
+      }
+      if(errorsList.length){
+        setErrors(errorsList);
+        console.log(errorsList);
+      } else {
+        handleSendCode();
+      }
     }
   }
 
   const handleSendCode = async () => {
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/auth/sendcode`,{email});
-      console.log(res);
-      if(res.data == "Done send mail"){
+      const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/auth/sendcode`,{email,username});
+      // console.log(res);
+      if(res.data == "Done"){
         setVerifyCode(true);
+      } else {
+        setErrors([res.data.error]);
       }
     } catch(e){
-        console.log(e);
+        console.log("send code signup", e);
     }
   }
-
   const handleSignup = async () => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/auth/signup`,{username, email, password, otp});
-      if(res.data.user&&res.data.token){
+      if(res.data.error){
+        setErrors([res.data.error]);
+      } else {
         login(res.data.user, res.data.token);
         navigate('/');
+        console.log("Signup done");
       }
+      // console.log(res);
     } catch(e){
-        console.log(e);
-      }
+      console.log("verify code signup", e);
+    }
   }
   
   return (
@@ -65,21 +92,19 @@ const Signup = () => {
           <input disabled={verifyCode ?true :false} type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" />
           <input disabled={verifyCode ?true :false} type="password" value={password} onChange={e=>{
             setPassword(e.target.value);
-            checkPassword();
           }} placeholder="Password" />
           <input disabled={verifyCode ?true :false} type="password" value={confirmPassword} onChange={e=>{
             setConfirmPassword(e.target.value);
-            checkPassword();
           }} placeholder="Confirm Password" />
         </div>
         <Link to="/signin">Do you have an account ?</Link>
-        <button type="button" disabled={verifyCode ?true :false} onClick={(e)=>handleSendCode(e)}>Sign Up</button>
+        <button type="button" onClick={(e)=>checkingData(e)}>Sign Up</button>
       </form>
       )}
       {verifyCode && (
           <div className="otp_elm">
               <h2>Verification code</h2>
-              <span className="sub">We have sent code from 4 degits on your email</span>
+              <span className="sub">We have sent code with 4 degits on your email {email}</span>
               <OtpInput
                   value={otp}
                   onChange={setOtp}
@@ -91,7 +116,9 @@ const Signup = () => {
               <button onClick={e=>handleSignup(e)}>Verify</button>
           </div>
       )}
-      <div className="error">{error}</div>
+      <div className="error">
+        {errors.map((val, index) => <p key={index}>{val}</p>)}
+      </div>
       </div>
     </div>
   );

@@ -1,11 +1,13 @@
-import  { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import  { useState, useContext } from "react";
 import Result from './Result';
 import Quiz from './quiz';
 import "./quiz.scss";
 import { FaCheck } from "react-icons/fa6";
+import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom";
 
 const QuizBoard = () => {
+  const {loginStatus} = useContext(UserContext);
   const [score, setScore] = useState(0);
   const [quizStatus, setQuizStatus] = useState("welcomeQuiz");
   const updateScore = (points) => {
@@ -42,7 +44,8 @@ const QuizBoard = () => {
               </label>
             </div>
           </div>
-          <button onClick={e=>setQuizStatus("startQuiz")} className="start-button">Start Quiz</button>
+          {loginStatus && <button onClick={e=>setQuizStatus("startQuiz")} className="start-button">Start Quiz</button>}
+          {!loginStatus && <Link className="lg" to="/signin">Login to start quiz</Link>}
         </div>
       }
       {quizStatus=="startQuiz" && 

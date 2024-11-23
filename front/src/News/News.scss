@@ -109,4 +109,24 @@ body {
       }
     }
   }
+  .lg {
+    padding: 15px 30px;
+    outline: antiquewhite;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: none;
+    color: #fff;
+    border: 1px solid #FFF;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 0 auto;
+    display: flex;
+    width: fit-content;
+    margin-bottom: 30px;
+    &:hover {
+      background: #c9c9c92e;
+      box-shadow: 0 6px 15px rgba(0, 173, 181, 0.4);
+    }
+  }
 }

@@ -239,7 +239,7 @@
   }
 
   // Start button
-  .start-button {
+  .start-button,.lg {
     // background: #00ffff;
     padding: 12px 25px;
     // border-radius: 7px;
@@ -250,6 +250,7 @@
     border: 1px solid #FFF;
     font-size: 17px;
     font-weight: 700;
+    text-decoration: none;
     &:hover {
       background: rgba(201, 201, 201, 0.1803921569);
       box-shadow: 0 6px 15px rgba(0, 173, 181, 0.4);

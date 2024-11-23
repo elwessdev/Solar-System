@@ -52,7 +52,7 @@
             padding: 0;
             li {
                 list-style: none;
-                padding: 8px 0px;
+                padding: 10px 0px;
                 a {
                     text-decoration: none;
                     color: #fff;
@@ -66,9 +66,45 @@
             }
         }
         .buttons {
+            display: flex;
+            gap: 1rem;
+            .btn {
+                padding: 9px 27px;
+                cursor: pointer;
+                transition: transform 0.2s ease, background 0.3s ease;
+                background: none;
+                color: #fff;
+                border: 1px solid #FFF;
+                font-size: 14px;
+                font-weight: 700;
+                text-decoration: none;
+                height: fit-content;
+                &:hover{
+                    background: rgba(201, 201, 201, 0.1803921569);
+                }
+                &:active {
+                    transform: scale(0.95);
+                }
+            }
+        }
+    }
+    .user_data{
         display: flex;
-        gap: 1rem;
-        .btn {
+        align-items: center;
+        p{
+            margin: 0;
+            font-weight: 500;
+            color: #FFF;
+            margin-left: 5px;
+            font-size: 15px;
+        }
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        button{
+            margin-left: 15px;
             padding: 9px 27px;
             cursor: pointer;
             transition: transform 0.2s ease, background 0.3s ease;
@@ -85,7 +121,6 @@
             &:active {
                 transform: scale(0.95);
             }
-        }
         }
     }
 }

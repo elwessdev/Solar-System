@@ -6,12 +6,12 @@ exports.SignUpRules = () => [
 
     check('username', 'username is required ').notEmpty(),
     check('username', 'username is required ').isLength({
-        max: 20,
+        max: 15,
         min: 3
     }),
 
     check('password', 'password is required ').isLength({
-        max: 20,
+        max: 15,
         min: 6
     }),
 ];

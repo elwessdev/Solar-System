@@ -1,7 +1,12 @@
-import React from "react";
+import {useContext} from "react";
 import "./News.scss";
 import { newsItems } from "./data/items";
+import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom";
+
+
 const News = () => {
+  const { loginStatus } = useContext(UserContext);
   return (
     <div className="solar-system-news">
       <header className="news-header">
@@ -12,7 +17,7 @@ const News = () => {
         </p>
       </header>
       <section className="news-list">
-        {newsItems.map((item, index) => (
+        {newsItems.slice(0,loginStatus ?newsItems.length-1 :3).map((item, index) => (
           <div key={index} className="news-card">
             <img src={item.image} alt={item.title} className="news-image" />
             <div className="news-content">
@@ -24,6 +29,7 @@ const News = () => {
           </div>
         ))}
       </section>
+        {!loginStatus && <Link className="lg" to="/signin">Login to view all news</Link>}
     </div>
   );
 };

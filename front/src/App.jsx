@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+import { Navigate, BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import ProtectedRoute from './protectedRoute';
 // Components
 import Home from './Home/home';
 import SignIn from './Auth/signin';
@@ -19,11 +20,12 @@ function App() {
         <Navbar navHiding={navHiding} />
         <Routes>
           <Route path="/" element={<Home setNavStatus={setNavHiding} navStatus={navHiding} />} />
+          <Route  path="/signin" element={<ProtectedRoute><SignIn /></ProtectedRoute>} />
+          <Route path="/signup" element={<ProtectedRoute><SignUp /></ProtectedRoute>} />
+          <Route path="/forgot-password" element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>} />
           <Route path="/quiz" element={<QuizBoard />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/news" element={<News />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
     </div>
