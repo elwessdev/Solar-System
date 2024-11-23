@@ -11,7 +11,7 @@ app.use(cors({
   // credentials: true,
   origin: `${process.env.FRONT_LINK}`,
   credentials:true,
-  optionSuccessStatus:200
+  // optionSuccessStatus:200
 }));
 app.use(express.json());
 
