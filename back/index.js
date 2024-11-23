@@ -10,6 +10,7 @@ app.use(cors({
   // origin: process.env.FRONT_LINK,
   // credentials: true,
   origin: `${process.env.FRONT_LINK}`,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials:true,
   // optionSuccessStatus:200
 }));
