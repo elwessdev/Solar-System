@@ -1,0 +1,100 @@
+.admin{
+    max-width: 1165px;
+    margin: 0 auto;
+    padding-top: 150px;
+    .links{
+        list-style: none;
+        margin: 0;
+        display: flex;
+        border-radius: 10px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(1px);
+        background: rgba(18, 18, 18, 0.5803921569);
+        justify-content: center;
+        padding: 15px 0;
+        font-weight: 600;
+        grid-gap: 10px;
+        li{
+            display: flex;
+            a{
+                padding: 8px 5px;
+                cursor: pointer;
+                transition: all .2s;
+                border-bottom: 1px solid transparent;
+                &.active{
+                    border-color: #EEE;
+                }
+            }
+        }
+    }
+    .planets_manage{
+        margin-top: 30px;
+        .add{
+            border-radius: 4px;
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: none;
+            color: #fff;
+            border: 1px solid #FFF;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            height: fit-content;
+            margin: 0 0 0 auto;
+            display: block;
+            margin-bottom: 10px;
+            &:hover{
+                background: rgba(201, 201, 201, 0.1803921569);
+            }
+        }
+        .planets-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: #121212;
+            border-radius: 10px;
+            transition: all 0.2s;
+            position: relative;
+            box-shadow: 1px 6px 7px 1px rgba(238, 238, 238, 0.1098039216);
+        }
+        .planets-table th, .planets-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .planets-table th {
+            background-color: #222;
+            color: #FFF;
+            font-weight: bold;
+            transition: all .2s;
+        }
+        .planets-table tbody tr{
+            transition: all .2s;
+        }
+        .planets-table tbody tr:hover {
+            background-color: rgb(33 33 33 / 56%);
+        }
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            margin-right: 5px;
+            color: #FFF;
+            font-weight: 500;
+        }
+        .btn.delete {
+            background-color: #ff4444;
+        }
+        .btn.details {
+            background-color: #00BCD4;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+    }
+}

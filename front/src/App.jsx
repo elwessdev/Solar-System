@@ -9,8 +9,8 @@ import ForgotPassword from './Auth/forgotPassword';
 import QuizBoard from './Quiz/QuizBoard';
 import Navbar from './Home/nav';
 import News from './News/news';
+import Admin from './Admin/admin';
 // import Education from './Education/education';
-// import Admin from './Admin/admin';
 
 function App() {
   const [navHiding, setNavHiding] = useState(false);
@@ -25,6 +25,7 @@ function App() {
           <Route path="/forgot-password" element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>} />
           <Route path="/quiz" element={<QuizBoard />} />
           <Route path="/news" element={<News />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

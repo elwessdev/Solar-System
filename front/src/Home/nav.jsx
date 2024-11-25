@@ -19,6 +19,7 @@ const Navbar = ({navHiding}) => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/quiz">Quiz</Link></li>
+                    <li><Link to="/admin">Dashboard</Link></li>
                     {/* <li><Link to="/learn">Learn</Link></li> */}
                 </ul>
                 {!loginStatus && (

@@ -1,228 +1,333 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-*{
-    font-family: "Orbitron", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+* {
+  font-family: "Orbitron", sans-serif;
 }
-.planets{
-    height: 100vh !important;
-    max-width: 1195px;
-    .planet{
-        position: relative;
-        .img{
-            width: 500px !important;
-            margin: 0 auto;
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            transition: all .2s;
-            img{
-                width: 100% !important;
-                animation: rotate 80s infinite linear;
-                @keyframes rotate {
-                    0% {
-                        transform: rotate(0deg);
-                    }
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
-                // @keyframes rotate {
-                //     0% {
-                //         background-position-x: 0px;
-                //     }
-                //     100% {
-                //         background-position-x: 1000px;
-                //     }
-                // }
-            }
-            &.show_details{
-                transform: translate(-50%, -60%) scale(2);
-            }
+.planets {
+  height: 100vh !important;
+  max-width: 1195px;
+  .planet {
+    position: relative;
+    .img {
+      width: 500px !important;
+      margin: 0 auto;
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.2s;
+      img {
+        width: 100% !important;
+        animation: rotate 80s infinite linear;
+        @keyframes rotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
-        .details{
-            overflow: hidden;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 0;
-            padding-bottom: 25px;
-            .list{
-                display: flex;
-                grid-gap: 90px;
-                float: left;
-                p{
-                    color: #837f7f;
-                    font-size: 15px;
-                    font-weight: 500;
-                    margin: 0 0 5px 0;
-                }
-                h3{
-                    color: #FFF;
-                    font-size: 30px;
-                    font-weight: 600;
-                    margin: 0;
-                }
-            }
-            .view-more{
-                float: right;
-                border: 1px solid rgb(255 255 255 / 38%);
-                backdrop-filter: blur(1px);
-                background: none;
-                color: #FFF;
-                height: fit-content;
-                font-weight: 600;
-                font-size: 15px;
-                padding: 20px 35px;
-                text-decoration: none;
-                display: flex;
-                cursor: pointer;
-                transition: all 0.2s;
-                background-color: rgba(255, 255, 255, 0.2);
-                &:hover{
-                    backdrop-filter: blur(4px);
-                    border-color: #FFF;
-                }
-                svg{
-                    width: 18px;
-                    height: 18px;
-                    margin-left: 7px;
-                    position: relative;
-                    top: 2px;
-                }
-            }
-        }
+        // @keyframes rotate {
+        //     0% {
+        //         background-position-x: 0px;
+        //     }
+        //     100% {
+        //         background-position-x: 1000px;
+        //     }
+        // }
+      }
+      &.show_details {
+        transform: translate(-50%, -60%) scale(2);
+      }
     }
-    .swiper-button-next, .swiper-button-prev {
-        z-index: 10;
-    }
-    .swiper-button-next,.swiper-button-prev{
-        padding: 10px;
+    .details {
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0;
+      padding-bottom: 25px;
+      .list {
         display: flex;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        border: 1px solid rgb(255 255 255 / 35%);
-        backdrop-filter: blur(1px);
-        color: #FFF;
-        font-size: 12px;
-        top: var(--swiper-navigation-top-offset, 41%) !important;
-        transition: all .2s;
-        &:hover{
-            border-color: #FFF;
+        grid-gap: 90px;
+        float: left;
+        p {
+          color: #837f7f;
+          font-size: 15px;
+          font-weight: 500;
+          margin: 0 0 5px 0;
         }
-        &:after{
-            font-size: 17px;
-            position: relative;
-            top: 2px;
+        h3 {
+          color: #fff;
+          font-size: 30px;
+          font-weight: 600;
+          margin: 0;
         }
-    }
-}
-.planet_details_window{
-    // width: 100%;
-    z-index: 1000;
-    max-height: 100vh;
-    overflow-y: auto;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    top: 100vh;
-    transition: all 0.3s;
-    background: linear-gradient(0deg, rgb(0 0 0 / 97%) 71%, rgb(0 0 0) 71%, rgb(0 0 0 / 0%) 94%);
-    padding: 70px;
-    overflow-y: overlay;
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-    &::-webkit-scrollbar-track {
-    background: transparent; 
-    }
-    &::-webkit-scrollbar-thumb {
-        background: #88888867; 
-        border-radius:10px;
-    }
-    &.showIt{
-        top: 0;
-    }
-    .close{
-        position: absolute;
-        top: 20px;
-        right: 25px;
-        z-index: 60;
-        width: 30px;
-        height: 30px;
-        padding: 10px;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+      .view-more {
+        float: right;
+        border: 1px solid rgb(255 255 255 / 38%);
         backdrop-filter: blur(1px);
-        color: #FFF;
-        font-size: 12px;
+        background: none;
+        color: #fff;
+        height: fit-content;
+        font-weight: 600;
+        font-size: 15px;
+        padding: 20px 35px;
+        text-decoration: none;
+        display: flex;
+        cursor: pointer;
         transition: all 0.2s;
+        background-color: rgba(255, 255, 255, 0.2);
+        &:hover {
+          backdrop-filter: blur(4px);
+          border-color: #fff;
+        }
+        svg {
+          width: 18px;
+          height: 18px;
+          margin-left: 7px;
+          position: relative;
+          top: 2px;
+        }
+      }
+    }
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    z-index: 10;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 10px;
+    display: flex;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(255 255 255 / 35%);
+    backdrop-filter: blur(1px);
+    color: #fff;
+    font-size: 12px;
+    top: var(--swiper-navigation-top-offset, 41%) !important;
+    transition: all 0.2s;
+    &:hover {
+      border-color: #fff;
+    }
+    &:after {
+      font-size: 17px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+.planet_details_window {
+  // width: 100%;
+  z-index: 1000;
+  max-height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  top: 100vh;
+  transition: all 0.3s;
+  background: linear-gradient(
+    0deg,
+    rgb(0 0 0 / 97%) 71%,
+    rgb(0 0 0) 71%,
+    rgb(0 0 0 / 0%) 94%
+  );
+  padding: 70px;
+  overflow-y: overlay;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #88888867;
+    border-radius: 10px;
+  }
+  &.showIt {
+    top: 0;
+  }
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    z-index: 60;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(1px);
+    color: #fff;
+    font-size: 12px;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    svg {
+      font-size: 28px;
+    }
+    &:hover {
+      border-color: #fff;
+    }
+  }
+  .details_content {
+    max-width: 80%;
+    margin: 0 auto;
+    .infos {
+      h1 {
+        color: #fff;
+        font-weight: 600;
+        font-size: 95px;
+        text-align: center;
+        text-shadow: 2px 2px 8px rgb(255 255 255 / 79%);
+        margin: 0;
+      }
+      p {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.7;
+        text-align: center;
+      }
+    }
+    .galleries {
+      margin-top: 50px;
+      display: flex;
+      grid-gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      .gall {
+        padding: 10px;
+        width: 275px;
+        border: 1px solid #ffffff99;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .videos {
+      margin-top: 50px;
+      display: flex;
+      grid-gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      .video {
         display: flex;
         justify-content: center;
-        align-items: center;
+        iframe {
+          width: 490px;
+          height: 270px;
+        }
+      }
+    }
+  }
+}
+
+.comments-container {
+    margin-top: 50px;
+    .add-comment {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 35px;
+    }
+
+    .comment-input {
+        border-radius: 5px;
+        margin-bottom: 10px;
+        resize: none;
+        background: #333;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+        height: 120px;
+        border: 1px solid rgba(238, 238, 238, 0.17);
+        box-shadow: 1px 6px 7px 1px rgba(238, 238, 238, 0.1098039216);
+        padding: 15px 10px;
+    }
+
+    .add-comment-btn {
+        align-self: flex-end;
+        border-radius: 5px;
+        padding: 15px 30px;
         cursor: pointer;
-        svg{
-            font-size: 28px;
-        }
+        transition: all 0.2s;
+        background: none;
+        color: #fff;
+        border: 1px solid #FFF;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        margin: 0 0 0 auto;
+        display: block;
+        width: fit-content;
+        margin-top: 0px;
         &:hover{
-            border-color: #FFF;
+            background: rgba(201, 201, 201, 0.1803921569);
+            box-shadow: 0 6px 15px rgba(0, 173, 181, 0.4);
         }
     }
-    .details_content{
-        max-width: 80%;
-        margin: 0 auto;
-        .infos{
-            h1{
-                color: #FFF;
-                font-weight: 600;
-                font-size: 95px;
-                text-align: center;
-                text-shadow: 2px 2px 8px rgb(255 255 255 / 79%);
-                margin: 0;
-            }
-            p{
-                color: #FFF;
-                font-size: 18px;
-                font-weight: 500;
-                line-height: 1.7;
-                text-align: center;
-            }
-        }
-        .galleries{
-            margin-top: 50px;
-            display: flex;
-            grid-gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            .gall{
-                padding: 10px;
-                width: 275px;
-                border: 1px solid #ffffff99;
-                display: flex;
-                cursor: pointer;
-                align-items: center;
-                img{
-                    width: 100%;
-                }
-            }
-        }
-        .videos{
-            margin-top: 50px;
-            display: flex;
-            grid-gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            .video{
-                display: flex;
-                justify-content: center;
-                iframe{
-                    width: 490px;
-                    height: 270px;
-                }
-            }
-        }
+
+    .comments-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
     }
-    
+
+    .comment {
+        display: flex;
+        background-color: #121212;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.2s;
+        position: relative;
+        border: 1px solid rgb(238 238 238 / 17%);
+        box-shadow: 1px 6px 7px 1px rgba(238, 238, 238, 0.1098039216);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .comment-content {
+        flex: 1;
+    }
+
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .comment-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .time {
+        font-size: 0.8rem;
+        color: gray;
+    }
+
+    .comment p {
+        margin: 0;
+        line-height: 1.5;
+        font-weight: 500;
+        font-size: 14px;
+    }
 }
