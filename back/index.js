@@ -18,6 +18,8 @@ app.use(express.json());
 // Apis
 // app.use("/",(req,res) => res.send("server is running"));
 app.use('/auth', require('./Routes/Auth'));
+app.use('/quiz', require('./Routes/Quiz'));
+app.use('/planet', require('./Routes/Planet'));
 
 // Checking
 app.listen(3001, () => {

@@ -28,7 +28,7 @@
             }
         }
     }
-    .planets_manage{
+    .manage_comments,.manage_planets,.manage_users,.manage_quiz{
         margin-top: 30px;
         .add{
             border-radius: 4px;
@@ -49,7 +49,7 @@
                 background: rgba(201, 201, 201, 0.1803921569);
             }
         }
-        .planets-table {
+        table{
             width: 100%;
             border-collapse: collapse;
             text-align: left;
@@ -58,43 +58,149 @@
             transition: all 0.2s;
             position: relative;
             box-shadow: 1px 6px 7px 1px rgba(238, 238, 238, 0.1098039216);
+            th,td{
+                padding: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 15px;
+                font-weight: 500;
+            }
+            th{
+                background-color: #222;
+                color: #FFF;
+                font-weight: bold;
+                transition: all .2s;
+            }
+            tbody tr{
+                transition: all .2s;
+                &:hover{
+                    background-color: rgb(33 33 33 / 56%);
+                }
+            }
+            button{
+                padding: 8px 15px;
+                border: none;
+                border-radius: 4px;
+                font-size: 0.9em;
+                cursor: pointer;
+                margin-right: 5px;
+                color: #FFF;
+                font-weight: 500;
+                transition: all .2s;
+                &:hover{
+                    opacity: 0.8;
+                }
+                &.delete{
+                    background-color: #ff4444;
+                }
+                &.nrml{
+                    background-color: #00BCD4;
+                }
+            }
         }
-        .planets-table th, .planets-table td {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 15px;
-            font-weight: 500;
+    }
+    .user-management,
+    .quiz-management {
+        .add-new-question-btn {
+        background-color: #2e8b57;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+            background-color: #3e9b67;
         }
-        .planets-table th {
-            background-color: #222;
-            color: #FFF;
-            font-weight: bold;
-            transition: all .2s;
         }
-        .planets-table tbody tr{
-            transition: all .2s;
-        }
-        .planets-table tbody tr:hover {
-            background-color: rgb(33 33 33 / 56%);
-        }
-        .btn {
-            padding: 8px 15px;
-            border: none;
+        margin-top: 30px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: #121212;
+            border-radius: 10px;
+            transition: all 0.2s;
+            position: relative;
+            box-shadow: 1px 6px 7px 1px rgba(238, 238, 238, 0.1098039216);
+        // thead {
+        //     background-color: #333;
+        //     display: block;
+        //     border-radius: 15px;
+        //     th {
+        //     padding: 10px;
+        //     text-align: left;
+        //     border-bottom: 1px solid #444;
+        //     width: 33%;
+        //     }
+        // }
+
+        tbody {
+            display: block;
+            max-height: 500px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        
+            &::-webkit-scrollbar {
+            width: 8px;
+            background-color: #1e1e1e;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+            background-color: #444; 
             border-radius: 4px;
-            font-size: 0.9em;
-            cursor: pointer;
-            margin-right: 5px;
-            color: #FFF;
-            font-weight: 500;
+            border: 2px solid #1e1e1e; 
+            }
+        
+            &::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            }
+        
+            &::-webkit-scrollbar-track {
+            background-color: #1e1e1e;
+            }
+        
+            tr {
+            &:hover {
+                background-color: #2a2a2a;
+            }
+        
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #444;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        
+            &:last-child td {
+                border-bottom: none;
+            }
+        
+            button {
+                background-color: #444;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                margin-right: 5px;
+                border-radius: 4px;
+                cursor: pointer;
+        
+                &:hover {
+                background-color: #555;
+                }
+            }
+            }
         }
-        .btn.delete {
-            background-color: #ff4444;
         }
-        .btn.details {
-            background-color: #00BCD4;
+    }
+    .quiz-management{
+        th {
+        &:nth-child(2){
+            width: 50%;
         }
-        .btn:hover {
-            opacity: 0.8;
         }
     }
 }

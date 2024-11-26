@@ -1,7 +1,9 @@
 import "./admin.scss";
+import { useState } from "react";
 import Planets from "./planets";
 import Comments from "./comments";
-import { useState } from "react";
+import QuizManagement from "./quiz";
+import UserManagement from "./users";
 
 const Admin = () => {
     const [tab, setTab] = useState("planets");
@@ -15,6 +17,8 @@ const Admin = () => {
             </ul>
             {tab=="planets" && <Planets />}
             {tab=="comments" && <Comments />}
+            {tab=="users" && <UserManagement />}
+            {tab=="quiz" && <QuizManagement />}
         </div>
     )
 }
