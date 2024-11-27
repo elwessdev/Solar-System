@@ -1,4 +1,17 @@
-*{
-    margin: 0;
-    padding:0;
+body{
+    background: url('../assets/home-back.jpg');
+    background-size: cover;
+    background-position: center;
+    display: inline !important;
+    user-select: none;
+    &::-webkit-scrollbar {
+        width: 8px !important;
+    }
+    &::-webkit-scrollbar-track {
+    background: transparent !important; 
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #88888867 !important; 
+        border-radius:10px !important;
+    }
 }
