@@ -11,14 +11,14 @@ import QuizBoard from './Quiz/QuizBoard';
 import Navbar from './Home/nav';
 import News from './News/news';
 import Admin from './Admin/admin';
-import axios from 'axios';
+import axios from 'axios'
 // import Education from './Education/education';
 
 function App() {
-   // Axios global configuration
-  axios.defaults.baseURL = import.meta.env.VITE_BACK_LINK;
-  axios.defaults.withCredentials = true;
-  // axios.defaults.headers.common["Content-Type"] = "application/json";
+    // Axios global configuration
+    axios.defaults.baseURL = import.meta.env.VITE_BACK_LINK;
+    axios.defaults.withCredentials = true; // Include cookies with requests
+    // axios.defaults.headers.common["Content-Type"] = "application/json";
   const [navHiding, setNavHiding] = useState(false);
   return (
     <div className='app'>

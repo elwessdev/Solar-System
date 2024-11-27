@@ -125,6 +125,7 @@ router.get('/current', isAuth(), (req, res) => {
 // Sign in
 // LoginRules(), validation,
 router.post('/login', async(req, res) => {
+    console.log(req.body);
     const {email, password} = req.body;
     try{
         const searchedUser = await users.findOne({ email });
