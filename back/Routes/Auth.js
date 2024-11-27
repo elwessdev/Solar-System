@@ -246,18 +246,4 @@ router.post("/newPassword", async(req, res) => {
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;

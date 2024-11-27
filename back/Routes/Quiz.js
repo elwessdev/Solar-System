@@ -8,3 +8,5 @@ const isAuth = require('../middleware/passport');
 router.get('/current', isAuth(), (req, res) => {
     res.send({user: req.user});
 });
+
+module.exports = router;
