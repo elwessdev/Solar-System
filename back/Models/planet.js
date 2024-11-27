@@ -34,7 +34,8 @@ const planetSchema = new mongoose.Schema({
         trim: true,
         validate: {
             validator: function (url) {
-                return /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(url);
+                const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+                return urlPattern.test(url);
             },
             message: 'Invalid URL format for image',
         },
@@ -42,6 +43,12 @@ const planetSchema = new mongoose.Schema({
     distanceFromSun: {
         type: Number,
         required: true,
+        validate: {
+            validator: function(value) {
+                return Number.isFinite(value);
+            },
+            message: 'Distance from sun must be a valid number.',
+        }
     },
     mass: {
         type: String,

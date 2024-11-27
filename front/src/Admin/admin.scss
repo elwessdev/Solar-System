@@ -76,6 +76,12 @@
                     background-color: rgb(33 33 33 / 56%);
                 }
             }
+            .tx{
+                max-width: 370px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
             button{
                 padding: 8px 15px;
                 border: none;

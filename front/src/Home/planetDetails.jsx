@@ -33,7 +33,7 @@ const commentsData = [
     },
   ];
 
-const Home = ({setNavStatus,navStatus}) => {
+const Home = ({setNavStatus,navStatus,planet}) => {
     return(
         <div className={`planet_details_window ${navStatus ? 'showIt' : ''}`}>
             <div className="close" onClick={e=>setNavStatus(false)}>
@@ -41,32 +41,28 @@ const Home = ({setNavStatus,navStatus}) => {
             </div>
             <div className="details_content">
                 <div className="infos">
-                    <h1>Earth</h1>
-                    <p>
-                    Earth is the third planet from the Sun and the only known celestial body that supports life. It has a unique environment with vast oceans, diverse landforms, and an atmosphere rich in oxygen. Earth’s surface is 71% water, making it a "blue planet," while its ecosystems sustain millions of species. It orbits the Sun in the habitable zone, with a moderate climate regulated by its atmosphere and magnetic field.
-                    </p>
+                    <h1>{planet?.name}</h1>
+                    <p>{planet?.description}</p>
                 </div>
                 <div className="galleries">
-                    <div className="gall">
-                        <img src={GallEarth1} />
-                    </div>
-                    <div className="gall">
-                        <img src={GallEarth2} />
-                    </div>
-                    <div className="gall">
-                        <img src={GallEarth3} />
-                    </div>
-                    <div className="gall">
-                        <img src={GallEarth4} />
-                    </div>
+                    {planet?.gallery.map((img,idx)=>{
+                        return(
+                            <div className="gall" key={idx}>
+                                <img src={img} alt="planet" />
+                            </div>
+                        )
+                    })}
+                    
+                    {/* <Zoom key={idx}>
+                    <img src={img} alt="planet" />
+                    </Zoom> */}
                 </div>
                 <div className="videos">
-                    {/* <div className="video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/AmrrSfiMxGA?si=BvNrDfl-aoN2rxbT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div className="video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/AmrrSfiMxGA?si=BvNrDfl-aoN2rxbT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div> */}
+                    {planet?.videos.map((vid,idx) => (
+                        <div className="video" key={idx}>
+                            <iframe width="560" height="315" src={vid} title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    ))}
                 </div>
                 <div className="comments-container">
                     <h2>Comments</h2>
