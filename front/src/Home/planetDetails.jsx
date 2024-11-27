@@ -1,11 +1,12 @@
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import {useState,useContext} from "react";
 import { IoClose } from "react-icons/io5";
+import 'react-medium-image-zoom/dist/styles.css'
 // Assets
 import GallEarth1 from "../assets/gal-earth1.jpg"
 import GallEarth2 from "../assets/gal-earth2.jpg"
 import GallEarth3 from "../assets/gal-earth3.jpg"
 import GallEarth4 from "../assets/gal-earth4.jpg"
+import { UserContext } from "../context/UserContext";
 
 const commentsData = [{
     id: 1,
@@ -33,6 +34,22 @@ const commentsData = [{
 ];
 
 const Home = ({setNavStatus,navStatus,planet}) => {
+    const { user } = useContext(UserContext);
+    const [comment, setComment] = useState('');
+
+    const handleAddComment = async (e) => {
+        let userId = user._id;
+        let username = user.username;
+        let planetId = planet._id;
+        
+        try{
+            const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/addComment`,{userId,username,comment,planetId});
+            console.log(res);
+        } catch(error){
+            console.log(error)
+        }
+    }
+
     return(
         <div className={`planet_details_window ${navStatus ? 'showIt' : ''}`}>
             <div className="close" onClick={e=>setNavStatus(false)}>
@@ -51,10 +68,6 @@ const Home = ({setNavStatus,navStatus,planet}) => {
                             </div>
                         )
                     })}
-                    
-                    {/* <Zoom key={idx}>
-                    <img src={img} alt="planet" />
-                    </Zoom> */}
                 </div>
                 <div className="videos">
                     {planet?.videos.map((vid,idx) => (
@@ -67,12 +80,12 @@ const Home = ({setNavStatus,navStatus,planet}) => {
                     <h2>Comments</h2>
                     <div className="add-comment">
                         <textarea
-                        placeholder="Write a comment..."
-                        className="comment-input"
-                        ></textarea>
-                        <button className="add-comment-btn">
-                        Post Comment
-                        </button>
+                            placeholder="Write a comment..."
+                            className="comment-input"
+                            value={comment}
+                            onChange={e=>setComment(e.target.value)}
+                          ></textarea>
+                        <button onClick={()=>handleAddComment()} className="add-comment-btn">Post Comment</button>
                     </div>
                     {commentsData.map((comment) => (
                         <div key={comment.id} className="comment">
