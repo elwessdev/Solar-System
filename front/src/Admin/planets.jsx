@@ -22,7 +22,7 @@ const Planets = () => {
     }
     const handleDelete = async(id) => {
         try{
-            const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/delete`, {id});
+            const res = await axios.delete(`${import.meta.env.VITE_BACK_LINK}/planet/delete/${id}`);
             if(res.data.success){
                 getPlanets();
             } else {

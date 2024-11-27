@@ -23,7 +23,6 @@ router.post("/add", async (req,res) => {
         return res.send({error: error});
     }
 });
-
 router.post("/planets", async (req,res) => {
     try{
         let planets = await planet.find();
@@ -32,7 +31,6 @@ router.post("/planets", async (req,res) => {
         return res.send({error: error});
     }
 });
-
 router.post("/edit", async (req,res) => {
     try{
         const {id,photo,name,distance,masse,description,gallery,videos} = req.body;
@@ -50,14 +48,79 @@ router.post("/edit", async (req,res) => {
         return res.send({error: error});
     }
 });
-router.post("/delete", async (req,res) => {
+router.delete("/delete/:id", async (req,res) => {
+    const {id} = req.params;
     try{
-        const {id} = req.body;
         let result = await planet.findByIdAndDelete(id);
         res.send({success: "done"});
     } catch(error){
         return res.send({error: error});
     }
 });
+
+// Comments
+router.get("/getComments", async (req,res) => {
+    try{
+        let planets = await planet.find();
+        let comments = [];
+        planets.forEach(planet => {
+            planet.comments.forEach(comment => {
+                comments.push({
+                    planetID: planet._id,
+                    planetName: planet.name,
+                    commentID: comment._id,
+                    username: comment.username,
+                    content: comment.content,
+                    status: comment.status
+                });
+            });
+        });
+        res.send({comments: comments});
+    } catch(error){
+        console.log({error: error});
+    }
+})
+router.post("/addComment", async (req,res) => {
+    try{
+        const {userID, username, comment, planetID} = req.body;
+        let searchedPlanet = await planet.findById(planetID);
+        searchedPlanet.comments.push({userId: userID, username: username, content: comment});
+        await searchedPlanet.save();
+        res.send({success: "done add comment"});
+    } catch(error){
+        return res.send({error: error});
+    }
+})
+router.post("/commentStatus", async (req,res) => {
+    const {planetID,commentID,status} = req.body;
+    try{
+        let searchedPlanet = await planet.findById(planetID);
+        searchedPlanet.comments.id(commentID).status = status;
+        await searchedPlanet.save();
+        res.send({success: "done status changed comment"});
+    } catch(error){
+        return res.send({error: error});
+    }
+})
+router.delete('/deleteComment/:planetId/:commentId', async (req, res) => {
+    const { planetId, commentId } = req.params;
+    try {
+        const searchedPlanet = await planet.findById(planetId);
+        if (!searchedPlanet) {
+            return res.status(404).send({ error: "Planet not found" });
+        }
+        const comment = searchedPlanet.comments.id(commentId);
+        console.log(comment);
+        if (!comment) {
+            return res.status(404).send({ error: "Comment not found" });
+        }
+        comment.remove();
+        await searchedPlanet.save();
+        res.send({ success: "Comment deleted successfully" });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
+
 
 module.exports = router;

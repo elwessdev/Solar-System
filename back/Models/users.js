@@ -15,10 +15,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // isVerified: {
-  //   type: Boolean,
-  //   default: false
-  // },
+  status: {
+    type: String,
+    default: "active"
+  },
   createdAt: {
     type: Date,
     default: Date.now,

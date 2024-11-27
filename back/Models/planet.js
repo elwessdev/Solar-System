@@ -16,6 +16,12 @@ const commentSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    status: {
+        type: String,
+        enum: ['Pending', 'Accepted', 'Declined'],
+        required: true,
+        default: "Pending",
+    },
     timestamp: {
         type: Date,
         default: Date.now,

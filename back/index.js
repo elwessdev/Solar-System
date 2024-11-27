@@ -20,6 +20,7 @@ app.use(express.json());
 app.use('/auth', require('./Routes/Auth'));
 app.use('/planet', require('./Routes/Planet'));
 app.use('/quiz', require('./Routes/Quiz'));
+app.use('/users', require('./Routes/Users'));
 
 // Checking
 app.listen(3001, () => {

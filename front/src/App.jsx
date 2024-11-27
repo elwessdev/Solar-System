@@ -18,7 +18,7 @@ function App() {
    // Axios global configuration
   axios.defaults.baseURL = import.meta.env.VITE_BACK_LINK;
   axios.defaults.withCredentials = true;
-  // axios.defaults.headers.common["Content-Type"] = "application/json";
+  axios.defaults.headers.common["Content-Type"] = "application/json";
   const [navHiding, setNavHiding] = useState(false);
   return (
     <div className='app'>
