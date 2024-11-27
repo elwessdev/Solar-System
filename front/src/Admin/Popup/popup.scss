@@ -1,0 +1,110 @@
+.popup{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 900;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(1px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .popup-content{
+        background: #222;
+        width: 500px;
+        border-radius: 3px;
+        border: 1px solid rgba(238, 238, 238, 0.431372549);
+        position: relative;
+        padding: 15px;
+        max-height: 90vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #88888867;
+            border-radius: 10px;
+        }
+        .close{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 60;
+            width: 17px;
+            height: 17px;
+            padding: 10px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(1px);
+            color: #fff;
+            font-size: 12px;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            &:hover{
+                border-color: #FFF;
+            }
+            svg{
+                font-size: 28px;
+            }
+        }
+        .title{
+            margin-top: 15px;
+            font-size: 30px;
+            margin: 0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .pop-planet{
+            form{
+                .sec{
+                    margin-bottom: 15px;
+                    h3{
+                        margin: 0;
+                        margin-bottom: 10px;
+                        font-size: 15px;
+                    }
+                    input,textarea{
+                        border-radius: 3px;
+                        resize: none;
+                        background: #1c1c1c;
+                        color: #fff;
+                        font-size: 13px;
+                        outline: none;
+                        border: 1px solid rgb(238 238 238 / 38%);
+                        padding: 15px 10px;
+                        width: -webkit-fill-available;
+                        margin-bottom: 5px;
+                        &::placeholder{
+                            color: #cecece;
+                        }
+                    }
+                    textarea{
+                        height: 100px;
+                    }
+                }
+                button{
+                    padding: 10px 35px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    background: none;
+                    color: #fff;
+                    border: 1px solid #FFF;
+                    font-size: 16px;
+                    font-weight: 700;
+                    text-decoration: none;
+                    height: fit-content;
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}
