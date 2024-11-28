@@ -35,7 +35,7 @@ export const UserProvider = ({ children }) => {
                     setUser(res.data.user);
                     setToken(localToken);
                     setLoginStatus(true);
-                    // console.log(res.data.user);
+                    console.log(res.data);
                 } else {
                     setLoginStatus(false);
                 }
