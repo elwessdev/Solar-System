@@ -22,6 +22,7 @@ export const UserProvider = ({ children }) => {
     };
     const checkLogin = async() => {
         const localToken = localStorage.getItem("jwt");
+        console.log(localToken);
         if(localToken){
             try{
                 const res = await axios.get(`${import.meta.env.VITE_BACK_LINK}/auth/current`,{
