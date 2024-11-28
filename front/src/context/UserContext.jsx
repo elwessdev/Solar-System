@@ -31,11 +31,12 @@ export const UserProvider = ({ children }) => {
                         Authorization: localToken
                     }
                 });
+                console.log("Cur1=>",res);
                 if(res.statusText=="OK"){
+                    console.log("Cur2=>",res);
                     setUser(res.data.user);
                     setToken(localToken);
                     setLoginStatus(true);
-                    console.log("cond=>",res.data);
                 } else {
                     setLoginStatus(false);
                 }

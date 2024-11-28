@@ -52,7 +52,7 @@ const Home = ({setNavStatus,navStatus,planet,setDe}) => {
     }
     useEffect(()=>{
         getComments();
-    },[])
+    },[navStatus])
 
     return(
         <div className={`planet_details_window ${navStatus ? 'showIt' : ''}`}>
