@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
     const [loginStatus, setLoginStatus] = useState(false);
     
     const login = (userData, userToken) => {
-        console.log(userData,userToken);
+        // console.log(userData,userToken);
         setUser(userData);
         setToken(userToken);
         localStorage.setItem("jwt",userToken);
@@ -31,9 +31,9 @@ export const UserProvider = ({ children }) => {
                         Authorization: localToken
                     }
                 });
-                console.log("Cur1=>",res);
-                if(res.statusText=="OK"){
-                    console.log("Cur2=>",res);
+                // console.log("Cur1=>",res);
+                if(res.data.user){
+                    // console.log("Cur2=>",res);
                     setUser(res.data.user);
                     setToken(localToken);
                     setLoginStatus(true);

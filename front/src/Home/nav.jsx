@@ -37,7 +37,7 @@ const Navbar = ({navHiding,searchKeyWord,setSearchKeyWord}) => {
                     <div className='user_data'>
                         <img className='pp' src="https://api.dicebear.com/9.x/thumbs/svg?seed=Mason" />
                         <p>{user.username}</p>
-                        <button className="btn" onClick={e=>logout()}>Logout</button>
+                        <button className="btn" onClick={()=>logout()}>Logout</button>
                     </div>
                 )}
             </div>

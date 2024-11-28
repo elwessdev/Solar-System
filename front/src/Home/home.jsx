@@ -18,7 +18,7 @@ import axios from "axios";
 
 
 const Home = ({setNavStatus,navStatus,searchKeyWord}) => {
-    const { loginStatus, user } = useContext(UserContext);
+    const { loginStatus } = useContext(UserContext);
     const [planets, setPlanets] = useState([]);
     const [details, setDetails] = useState();
     const [filteredPlanets, setFilteredPlanets] = useState([]);
@@ -55,7 +55,7 @@ const Home = ({setNavStatus,navStatus,searchKeyWord}) => {
     useEffect(() => {
         getPlanets();
     }, []);
-    console.log("home=>",loginStatus, user);
+    // console.log("home=>",loginStatus, user);
     return(
         <div className="home">
             <Swiper className="planets"
