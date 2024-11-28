@@ -36,7 +36,7 @@ const Home = ({setNavStatus,navStatus}) => {
     }
     useEffect(()=>{
         getPlanets();
-        console.log(details);
+        // console.log(details);
     },[])
     return(
         <div className="home">
