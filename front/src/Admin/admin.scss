@@ -30,6 +30,7 @@
     }
     .manage_comments,.manage_planets,.manage_users,.manage_quiz{
         margin-top: 30px;
+        margin-bottom: 30px;
         .add{
             border-radius: 4px;
             padding: 10px 25px;
@@ -82,24 +83,27 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
             }
-            button{
-                padding: 8px 15px;
-                border: none;
-                border-radius: 4px;
-                font-size: 0.9em;
-                cursor: pointer;
-                margin-right: 5px;
-                color: #FFF;
-                font-weight: 500;
-                transition: all .2s;
-                &:hover{
-                    opacity: 0.8;
-                }
-                &.delete{
-                    background-color: #ff4444;
-                }
-                &.nrml{
-                    background-color: #00BCD4;
+            .btns{
+                display: flex;
+                button{
+                    padding: 8px 15px;
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 0.9em;
+                    cursor: pointer;
+                    margin-right: 5px;
+                    color: #FFF;
+                    font-weight: 500;
+                    transition: all .2s;
+                    &:hover{
+                        opacity: 0.8;
+                    }
+                    &.delete{
+                        background-color: #ff4444;
+                    }
+                    &.nrml{
+                        background-color: #00BCD4;
+                    }
                 }
             }
         }

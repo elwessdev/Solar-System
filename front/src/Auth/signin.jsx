@@ -20,10 +20,14 @@ const Signin = () => {
         if(res.data.error){
           setError(res.data.error);
         } else {
-          setError("");
-          login(res.data.user, res.data.token);
-          // console.log("Sign done");
-          navigate('/');
+          if(res.data.user.status == "block"){
+            setError("Your account has been blocked, Contact support for more information");
+          } else {
+            setError("");
+            login(res.data.user, res.data.token);
+            // console.log("Sign done");
+            navigate('/');
+          }
         }
       } catch(e){
         console.log(e);

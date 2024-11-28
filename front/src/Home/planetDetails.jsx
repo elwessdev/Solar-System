@@ -1,58 +1,65 @@
-import {useState,useContext} from "react";
+import {useState,useContext, useEffect} from "react";
+import axios from "axios";
 import { IoClose } from "react-icons/io5";
+import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 // Assets
-import GallEarth1 from "../assets/gal-earth1.jpg"
-import GallEarth2 from "../assets/gal-earth2.jpg"
-import GallEarth3 from "../assets/gal-earth3.jpg"
-import GallEarth4 from "../assets/gal-earth4.jpg"
+// import GallEarth1 from "../assets/gal-earth1.jpg"
+// import GallEarth2 from "../assets/gal-earth2.jpg"
+// import GallEarth3 from "../assets/gal-earth3.jpg"
+// import GallEarth4 from "../assets/gal-earth4.jpg"
 import { UserContext } from "../context/UserContext";
 
-const commentsData = [{
-    id: 1,
-    name: "Monica",
-    time: "1h ago",
-    avatar: "https://via.placeholder.com/50", // Placeholder for avatar image
-    comment:
-    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-},
-{
-    id: 2,
-    name: "Larry G",
-    time: "2 days ago",
-    avatar: "https://via.placeholder.com/50",
-    comment: "Awesome!",
-},
-{
-    id: 3,
-    name: "Johny",
-    time: "May, 30",
-    avatar: "https://via.placeholder.com/50",
-    comment:
-    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-},
-];
-
-const Home = ({setNavStatus,navStatus,planet}) => {
+const Home = ({setNavStatus,navStatus,planet,setDe}) => {
     const { user } = useContext(UserContext);
     const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([]);
+    const [warning, setWarning] = useState();
 
-    const handleAddComment = async (e) => {
-        let userId = user._id;
-        let username = user.username;
-        let planetId = planet._id;
-        
-        try{
-            const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/addComment`,{userId,username,comment,planetId});
-            console.log(res);
-        } catch(error){
-            console.log(error)
+    const handleAddComment = async () => {
+        if(comment){
+            let userID = user._id;
+            let username = user.username;
+            let planetID = planet._id;
+            try{
+                const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/addComment`,{userID,username,comment,planetID});
+                if(res.data.success){
+                    getComments();
+                    setComment('');
+                    setWarning(true);
+                    setTimeout(()=>{
+                        setWarning(false);
+                    },2000);
+                } else {
+                    console.log(res.data.error);
+                }
+            } catch(error){
+                console.log(error)
+            }
         }
     }
+    const getComments = async () => {
+        try{
+            const res = await axios.get(`${import.meta.env.VITE_BACK_LINK}/planet/getCommentsById/?planetID=${planet._id}`);
+            if(res.data.comments){
+                setComments(res.data.comments);
+            } else {
+                console.log(res.data.error);
+            }
+        } catch(error){
+            console.log(error);
+        }
+    }
+    useEffect(()=>{
+        getComments();
+    },[navStatus])
 
     return(
         <div className={`planet_details_window ${navStatus ? 'showIt' : ''}`}>
-            <div className="close" onClick={e=>setNavStatus(false)}>
+            <div className="close" onClick={()=>{
+                setDe();
+                setNavStatus(false);
+            }}>
                 <IoClose />
             </div>
             <div className="details_content">
@@ -64,7 +71,9 @@ const Home = ({setNavStatus,navStatus,planet}) => {
                     {planet?.gallery.map((img,idx)=>{
                         return(
                             <div className="gall" key={idx}>
-                                <img src={img} alt="planet" />
+                                <Zoom>
+                                    <img src={img} alt="planet" />
+                                </Zoom>
                             </div>
                         )
                     })}
@@ -79,23 +88,24 @@ const Home = ({setNavStatus,navStatus,planet}) => {
                 <div className="comments-container">
                     <h2>Comments</h2>
                     <div className="add-comment">
+                        {warning && <p className="warning">Your comment under review before post</p>}
                         <textarea
                             placeholder="Write a comment..."
                             className="comment-input"
                             value={comment}
                             onChange={e=>setComment(e.target.value)}
-                          ></textarea>
+                        ></textarea>
                         <button onClick={()=>handleAddComment()} className="add-comment-btn">Post Comment</button>
                     </div>
-                    {commentsData.map((comment) => (
-                        <div key={comment.id} className="comment">
-                        <img src={comment.avatar} alt={`${comment.name}'s avatar`} className="avatar" />
+                    {comments && comments.filter(comment => comment.status === "Accepted").map((comment,idx) => (
+                        <div key={idx} className="comment">
+                        <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${comment.username}`} alt={`${comment.username}'s avatar`} className="avatar" />
                         <div className="comment-content">
                             <div className="comment-header">
-                            <h4>{comment.name}</h4>
-                            <span className="time">{comment.time}</span>
+                            <h4>{comment.username}</h4>
+                            {/* <span className="time">{comment.time}</span> */}
                             </div>
-                            <p>{comment.comment}</p>
+                            <p>{comment.content}</p>
                         </div>
                         </div>
                     ))}

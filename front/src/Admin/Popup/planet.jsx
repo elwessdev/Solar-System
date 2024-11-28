@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./popup.scss";
 import axios from "axios";
 
-const PlanetPopup = ({closePop,status,planet}) => {
+const PlanetPopup = ({closePop,status,planet,getPlanets}) => {
     const [photo, setPhoto] = useState();
     const [name, setName] = useState();
     const [distance, setDistance] = useState();
@@ -24,22 +24,25 @@ const PlanetPopup = ({closePop,status,planet}) => {
     };
 
     const handleAddPlanet = async () => {
-        try{
-            const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/add`,{photo,name,distance,masse,description,gallery,videos});
-            if(res.data.success){
-                console.log("Done");
-                closePop("none");
+        if(photo && name && distance && masse && description && gallery && videos){
+            try{
+                const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/add`,{photo,name,distance,masse,description,gallery,videos});
+                if(res.data.success){
+                    console.log("Done");
+                    closePop("none");
+                    getPlanets();
+                }
+                // console.log(res.data.error.errors);
+                if(res.data.error.errors){
+                    let errorsList = res.data.error.errors;
+                    // setError(errorsList);
+                    Object.keys(errorsList).forEach(key => {
+                        console.log(errorsList[key].message);
+                    });
+                }
+            } catch(err){
+                console.log(err, "Add planet");
             }
-            // console.log(res.data.error.errors);
-            if(res.data.error.errors){
-                let errorsList = res.data.error.errors;
-                // setError(errorsList);
-                Object.keys(errorsList).forEach(key => {
-                    console.log(errorsList[key].message);
-                });
-            }
-        } catch(err){
-            console.log(err, "Add planet");
         }
     }
 
@@ -50,7 +53,8 @@ const PlanetPopup = ({closePop,status,planet}) => {
             if(res.data.success){
                 console.log("Done");
                 closePop("none");
-                location.reload();
+                getPlanets();
+                // location.reload();
             }
             // console.log(res.data.error.errors);
             if(res.data.error.errors){
@@ -90,7 +94,7 @@ const PlanetPopup = ({closePop,status,planet}) => {
                             <h3>Details</h3>
                             <input type="text" placeholder="Photo (link)" value={photo} onChange={e=>setPhoto(e.target.value)} />
                             <input type="text" placeholder="Planet name" value={name} onChange={e=>setName(e.target.value)} />
-                            <input type="number" placeholder="Distance au Soleil" value={distance} onChange={e=>setDistance(e.target.value)} />
+                            <input type="text" placeholder="Distance au Soleil" value={distance} onChange={e=>setDistance(e.target.value)} />
                             <input type="text" value={masse} onChange={e=>setMass(e.target.value)} placeholder="Masse" />
                             <textarea placeholder="Description" value={description} onChange={e=>setDescription(e.target.value)}></textarea>
                         </div>

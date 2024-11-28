@@ -19,7 +19,6 @@ export const UserProvider = ({ children }) => {
         setToken(null);
         localStorage.removeItem("jwt");
         setLoginStatus(false);
-        checkLogin();
     };
     const checkLogin = async() => {
         const localToken = localStorage.getItem("jwt");

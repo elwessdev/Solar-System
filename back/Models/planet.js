@@ -47,14 +47,9 @@ const planetSchema = new mongoose.Schema({
         },
     },
     distanceFromSun: {
-        type: Number,
+        type: String,
         required: true,
-        validate: {
-            validator: function(value) {
-                return Number.isFinite(value);
-            },
-            message: 'Distance from sun must be a valid number.',
-        }
+        trim: true,
     },
     mass: {
         type: String,

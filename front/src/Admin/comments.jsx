@@ -19,6 +19,7 @@ const Comments = () => {
             console.log({error: error});
         }
     }
+
     const handleDelete = async(planetID,commentID) => {
         try{
             const res = await axios.delete(`${import.meta.env.VITE_BACK_LINK}/planet/deleteComment/${planetID}/${commentID}`);
@@ -32,6 +33,7 @@ const Comments = () => {
             console.log(error);
         }
     }
+
     const handleStatus = async(planetID,commentID,status) => {
         try{
             const res = await axios.post(`${import.meta.env.VITE_BACK_LINK}/planet/commentStatus`, {planetID,commentID,status});
@@ -40,7 +42,7 @@ const Comments = () => {
             } else {
                 console.log(res.data.error);
             }
-            console.log(res.data);
+            // console.log(res.data);
         } catch(error){
             console.log(error);
         }
@@ -72,15 +74,17 @@ const Comments = () => {
                             <td>{comment.content}</td>
                             <td>{comment.status}</td>
                             <td>
-                                {comment.status === "Pending" && (
-                                    <>
-                                        <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Accepted")}>Accept</button>
-                                        <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Declined")}>Decline</button>
-                                    </>
-                                )}
-                                {comment.status === "Declined" && <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Accepted")}>Accept</button>}
-                                {comment.status === "Accepted" && <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Declined")}>Decline</button>}
-                                <button className="delete" onClick={e=>handleDelete(comment?.planetID,comment?.commentID)}>Delete</button>
+                                <div className="btns">
+                                    {comment.status === "Pending" && (
+                                        <>
+                                            <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Accepted")}>Accept</button>
+                                            <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Declined")}>Decline</button>
+                                        </>
+                                    )}
+                                    {comment.status === "Declined" && <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Accepted")}>Accept</button>}
+                                    {comment.status === "Accepted" && <button className="nrml" onClick={e=>handleStatus(comment?.planetID,comment?.commentID,"Declined")}>Decline</button>}
+                                    <button className="delete" onClick={e=>handleDelete(comment?.planetID,comment?.commentID)}>Delete</button>
+                                </div>
                             </td>
                         </tr>
                     ))}

@@ -80,6 +80,15 @@ router.get("/getComments", async (req,res) => {
         console.log({error: error});
     }
 })
+router.get("/getCommentsById", async (req,res) => {
+    const { planetID } = req.query;
+    try{
+        let planets = await planet.findById(planetID);
+        res.send({comments: planets.comments});
+    } catch(error){
+        console.log({error: error});
+    }
+})
 router.post("/addComment", async (req,res) => {
     try{
         const {userID, username, comment, planetID} = req.body;
@@ -106,15 +115,13 @@ router.delete('/deleteComment/:planetId/:commentId', async (req, res) => {
     const { planetId, commentId } = req.params;
     try {
         const searchedPlanet = await planet.findById(planetId);
-        if (!searchedPlanet) {
-            return res.status(404).send({ error: "Planet not found" });
-        }
-        const comment = searchedPlanet.comments.id(commentId);
-        console.log(comment);
-        if (!comment) {
+        const commentIndex = searchedPlanet.comments.findIndex(
+            (comment) => comment._id.toString() === commentId
+        );
+        if (commentIndex === -1) {
             return res.status(404).send({ error: "Comment not found" });
         }
-        comment.remove();
+        searchedPlanet.comments.splice(commentIndex, 1);
         await searchedPlanet.save();
         res.send({ success: "Comment deleted successfully" });
     } catch (error) {

@@ -19,7 +19,7 @@ const Navbar = ({navHiding}) => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/quiz">Quiz</Link></li>
-                    <li><Link to="/admin">Dashboard</Link></li>
+                    {(user?.email == "bms93951@gmail.com" || user?.email == "tabaiiyadh317@gmail.com" || user?.email == "maizaaymena@gmail.com") &&  <li><Link to="/admin">Dashboard</Link></li>}
                     {/* <li><Link to="/learn">Learn</Link></li> */}
                 </ul>
                 {!loginStatus && (

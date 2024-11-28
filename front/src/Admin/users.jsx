@@ -12,7 +12,7 @@ const UserManagement = () => {
       } else {
         console.log(res.data.error);
       }
-      console.log(res.data);
+      // console.log(res.data);
     } catch(error){
       console.log({error: error});
     }
@@ -70,13 +70,15 @@ const UserManagement = () => {
               {/* <td>{user.createdAt}</td> */}
               <td>{user.status}</td>
               <td>
-                {user.status === "active" && (
-                  <button className="nrml" onClick={() => handleUserStatus(user?._id,"block")}>Block</button>
-                )}
-                {user.status === "block" && (
-                  <button className="nrml" onClick={() => handleUserStatus(user?._id,"active")}>Active</button>
-                )}
-                <button className="delete" onClick={() => handleDeleteUser(user?._id)}>Delete</button>
+                <div className="btns">
+                  {user.status === "active" && (
+                    <button className="nrml" onClick={() => handleUserStatus(user?._id,"block")}>Block</button>
+                  )}
+                  {user.status === "block" && (
+                    <button className="nrml" onClick={() => handleUserStatus(user?._id,"active")}>Active</button>
+                  )}
+                  <button className="delete" onClick={() => handleDeleteUser(user?._id)}>Delete</button>
+                </div>
               </td>
             </tr>
           ))}

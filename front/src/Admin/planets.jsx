@@ -57,18 +57,20 @@ const Planets = () => {
                                 <td>{planet?.name}</td>
                                 <td className="tx">{planet?.description}</td>
                                 <td>
-                                    <button className="nrml" onClick={e=>{
-                                        setStatusPop("modify");
-                                        setDetails(planet);
-                                    }}>Details</button>
-                                    <button className="delete" onClick={e=>handleDelete(planet?._id)}>Delete</button>
+                                    <div className="btns">
+                                        <button className="nrml" onClick={e=>{
+                                            setStatusPop("modify");
+                                            setDetails(planet);
+                                        }}>Details</button>
+                                        <button className="delete" onClick={e=>handleDelete(planet?._id)}>Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         ))
                     )}
                 </tbody>
             </table>
-            {statusPop!="none" && <PlanetPopup closePop={setStatusPop} status={statusPop}  planet={details}/>}
+            {statusPop!="none" && <PlanetPopup closePop={setStatusPop} status={statusPop}  planet={details} getPlanets={getPlanets} />}
         </div>
     )
 }
