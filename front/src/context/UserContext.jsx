@@ -6,7 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [token, setToken] = useState(null);
-    const [loginStatus, setLoginStatus] = useState();
+    const [loginStatus, setLoginStatus] = useState(false);
     
     const login = (userData, userToken) => {
         console.log(userData,userToken);
@@ -35,7 +35,7 @@ export const UserProvider = ({ children }) => {
                     setUser(res.data.user);
                     setToken(localToken);
                     setLoginStatus(true);
-                    console.log(res.data);
+                    console.log("cond=>",res.data);
                 } else {
                     setLoginStatus(false);
                 }

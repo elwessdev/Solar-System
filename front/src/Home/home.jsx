@@ -55,7 +55,7 @@ const Home = ({setNavStatus,navStatus,searchKeyWord}) => {
     useEffect(() => {
         getPlanets();
     }, []);
-    console.log(loginStatus, user);
+    console.log("home=>",loginStatus, user);
     return(
         <div className="home">
             <Swiper className="planets"
