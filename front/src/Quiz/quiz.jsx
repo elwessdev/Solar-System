@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { questions } from "./data/questions";
 import "./quiz.scss";
 
-const Quiz = ({ updateScore,quizResult }) => {
+const Quiz = ({ quizzes, updateScore, score }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [feedback, setFeedback] = useState({});
@@ -10,25 +9,19 @@ const Quiz = ({ updateScore,quizResult }) => {
   const [answers, setAnswers] = useState([]);
 
   const handleOptionChange = (option) => {
-    if (questions[currentQuestion].isMultiple) {
-      setSelectedOptions((prev) =>
-        prev.includes(option)
-          ? prev.filter((o) => o !== option)
-          : [...prev, option]
-      );
-    } else {
-      setSelectedOptions([option]);
-    }
+    setSelectedOptions((prev) =>
+      prev.includes(option)
+        ? prev.filter((o) => o !== option)
+        : [...prev, option]
+    );
   };
 
   const handleSubmit = () => {
-    const correctAnswers = questions[currentQuestion].answer;
-    const isCorrect = questions[currentQuestion].isMultiple
-      ? correctAnswers.every((ans) => selectedOptions.includes(ans)) &&
-        correctAnswers.length === selectedOptions.length
-      : correctAnswers.includes(selectedOptions[0]);
-
-    const feedbackState = questions[currentQuestion].options.reduce(
+    const correctAnswers = quizzes[currentQuestion].correctAnswers;
+    const isCorrect =
+      correctAnswers.length === selectedOptions.length &&
+      correctAnswers.every((ans) => selectedOptions.includes(ans));
+    const feedbackState = quizzes[currentQuestion].options.reduce(
       (acc, option) => {
         acc[option] = {
           correct: correctAnswers.includes(option),
@@ -38,6 +31,7 @@ const Quiz = ({ updateScore,quizResult }) => {
       },
       {}
     );
+
     setFeedback(feedbackState);
     setAnswers((prev) => {
       const updated = [...prev];
@@ -47,15 +41,16 @@ const Quiz = ({ updateScore,quizResult }) => {
       };
       return updated;
     });
-    if (isCorrect) updateScore(1);
-    if (currentQuestion === questions.length - 1) {
+
+    if (isCorrect){
+      updateScore(1);
+      console.log("Correct");
+    } else{
+      console.log("Wrong");
+    }
+
+    if (currentQuestion === quizzes.length - 1) {
       setQuizComplete(true);
-    } else {
-      setTimeout(() => {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedOptions([]);
-        setFeedback({});
-      }, 1300);
     }
   };
 
@@ -69,7 +64,7 @@ const Quiz = ({ updateScore,quizResult }) => {
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < quizzes.length - 1) {
       const next = currentQuestion + 1;
       setCurrentQuestion(next);
       setSelectedOptions(answers[next]?.selectedOptions || []);
@@ -79,80 +74,86 @@ const Quiz = ({ updateScore,quizResult }) => {
 
   return (
     <div className="quiz">
-      <h4 className="text-info">
-        Question {currentQuestion + 1}/{questions.length}
-      </h4>
-      <h2 className="text-info">{questions[currentQuestion].question}</h2>
-      <div className="options mt-4">
-        {questions[currentQuestion].options.map((option, index) => (
-          <div
-            key={index}
-            className={`form-check d-flex align-items-center mb-3 ${
-              feedback[option]
-                ? feedback[option].correct
-                  ? "border border-success"
-                  : "border border-danger"
-                : ""
-            }`}
-          >
-            <input
-              type={questions[currentQuestion].isMultiple ? "checkbox" : "radio"}
-              className={`form-check-input custom-input ${
-                feedback[option]
-                  ? feedback[option].correct
-                    ? "is-valid"
-                    : "is-invalid"
-                  : ""
-              }`}
-              name="options"
-              value={option}
-              disabled={!!feedback[option]}
-              checked={selectedOptions.includes(option)}
-              onChange={() => handleOptionChange(option)}
-            />
-            <label
-              className={`form-check-label ${
-                feedback[option]
-                  ? feedback[option].correct
-                    ? "text-success"
-                    : "text-danger"
-                  : ""
-              }`} >
-              {option}
-            </label>
+      {quizComplete ? (
+        <div className="result-section">
+          <h2>Quiz Complete! See your results below:</h2>
+          <p>Your final score is: {score} </p>
+        </div>
+      ) : (
+        <>
+          <h4 className="text-info">
+            Question {currentQuestion + 1}/{quizzes.length}
+          </h4>
+          <h2 className="text-info">{quizzes[currentQuestion].question}</h2>
+          <div className="options mt-4">
+            {quizzes[currentQuestion].options.map((option, index) => (
+              <div
+                key={index}
+                className={`form-check d-flex align-items-center mb-3 ${
+                  feedback[option]
+                    ? feedback[option].correct
+                      ? "border border-success"
+                      : "border border-danger"
+                    : ""
+                }`}
+              >
+                <input
+                  type={"checkbox"}
+                  className={`form-check-input custom-input ${
+                    feedback[option]
+                      ? feedback[option].correct
+                        ? "is-valid"
+                        : "is-invalid"
+                      : ""
+                  }`}
+                  name="options"
+                  value={option}
+                  disabled={!!feedback[option]}
+                  checked={selectedOptions.includes(option)}
+                  onChange={() => handleOptionChange(option)}
+                />
+                <label
+                  className={`form-check-label ${
+                    feedback[option]
+                      ? feedback[option].correct
+                        ? "text-success"
+                        : "text-danger"
+                      : ""
+                  }`}
+                >
+                  {option}
+                </label>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <div className="navigation-buttons mt-3">
-        {currentQuestion > 0 && (
-          <button className="btn btn-secondary me-2" onClick={handlePrevious}>
-            Previous
-          </button>
-        )}
-        {answers[currentQuestion] && currentQuestion < questions.length - 1 && (
-          <button className="btn btn-secondary me-2" onClick={handleNext}>
-            Next
-          </button>
-        )}
-        {(!quizComplete && answers.length<=currentQuestion) &&(
-          <button
-            className="btn btn-primary"
-            onClick={handleSubmit}
-            disabled={selectedOptions.length === 0}
-          >
-            Submit
-          </button>
-        )}
-        {/* {quizComplete && (
-          <button
-            className="btn btn-success"
-            onClick={e=>quizResult("quizResult")}
-            disabled={selectedOptions.length === 0}>
-            See Result
-          </button>
-        )} */}
-      </div>
+          <div className="navigation-buttons mt-3">
+            {currentQuestion > 0 && (
+              <button className="btn btn-secondary me-2" onClick={handlePrevious}>
+                Previous
+              </button>
+            )}
+            {currentQuestion < quizzes.length - 1 && (
+              <button
+                className="btn btn-secondary me-2"
+                onClick={handleNext}
+                disabled={!answers[currentQuestion]}
+              >
+                Next
+              </button>
+            )}
+            {currentQuestion < quizzes.length && (
+              <button
+                className="btn btn-primary"
+                onClick={handleSubmit}
+                disabled={selectedOptions.length == 0}
+              >
+                Submit
+              </button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

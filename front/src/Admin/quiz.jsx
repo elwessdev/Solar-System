@@ -1,12 +1,23 @@
-import { useState } from "react";
-import questionsData from "./data/questions.json";
-// import ManagementPopUp from "./ManagementPopUp";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import QuizPopup from "./Popup/quiz";
 
 const QuizManagement = () => {
-  const [questions, setQuestions] = useState(questionsData.questions);
+  const [questions, setQuestions] = useState([]);
   const [PopUpOn, setPopUpOn] = useState("None");
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACK_LINK}/quiz`);
+        setQuestions(response.data);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    };
+    fetchQuestions();
+  }, [questions]);
 
   const handleEdit = (id) => {
     const questionToEdit = questions.find((q) => q.id === id);
@@ -19,9 +30,13 @@ const QuizManagement = () => {
     setPopUpOn("Add");
   };
 
-  const handleDelete = (id) => {
-    const updatedQuestions = questions.filter((q) => q.id !== id);
-    setQuestions(updatedQuestions);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_BACK_LINK}/quiz/${id}`);
+      setQuestions((prev) => prev.filter((q) => String(q.id) !== String(id)));
+    } catch (error) {
+      console.error("Error deleting question:", error);
+    }
   };
 
   return (
@@ -33,37 +48,33 @@ const QuizManagement = () => {
             <th>N°</th>
             <th>Question</th>
             <th>Difficulty</th>
-            <th>Multiple Choice</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {questions.map((q,idx) => (
-            <tr key={q.id}>
-              <td>{idx+1}</td>
-              <td>{q.question}</td>
-              <td>{q.difficulty}</td>
-              <td>{q.isMultiple ? "Yes" : "No"}</td>
-              <td>
-                <button className="nrml" onClick={() => handleEdit(q.id)}>Edit</button>
-                <button className="delete" onClick={() => handleDelete(q.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
+          {questions.length !== 0
+            ? questions.map((q, idx) => (
+                <tr key={q.id}>
+                  <td>{idx + 1}</td>
+                  <td>{q.question}</td>
+                  <td>{q.difficulty}</td>
+                  <td>
+                    <div className="btns">
+                      <button className="nrml" onClick={() => handleEdit(q.id)}>Edit</button>
+                      <button className="delete" onClick={() => handleDelete(q.id)}>Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            : <tr><td colSpan={4}>No Quizzes yet</td></tr>}
         </tbody>
       </table>
       {PopUpOn !== "None" && (
-        // <ManagementPopUp
-        //   PopUpOn={PopUpOn}
-        //   setPopUpOn={setPopUpOn}
-        //   newQuestion={setQuestions} 
-        //   selectedQuestion={selectedQuestion} 
-        // />
         <QuizPopup
-            PopUpOn={PopUpOn}
-            setPopUpOn={setPopUpOn}
-            newQuestion={setQuestions} 
-            selectedQuestion={selectedQuestion} 
+          PopUpOn={PopUpOn}
+          setPopUpOn={setPopUpOn}
+          newQuestion={setQuestions}
+          selectedQuestion={selectedQuestion}
         />
       )}
     </div>

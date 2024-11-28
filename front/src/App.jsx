@@ -12,7 +12,7 @@ import QuizBoard from './Quiz/QuizBoard';
 import Navbar from './Home/nav';
 import News from './News/news';
 import Admin from './Admin/admin';
-import axios from 'axios';
+import axios from 'axios'
 // import Education from './Education/education';
 
 function App() {
