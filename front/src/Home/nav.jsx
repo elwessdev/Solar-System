@@ -11,10 +11,10 @@ const Navbar = ({navHiding}) => {
         <nav className={`navbar ${navHiding ? 'hide_nav' : ''}`}>
             <div className="navbar__logo">Solar System</div>
             <div className="rg">
-                <div className="search">
+                {/* <div className="search">
                     <input type="text" placeholder="Search..." />
                     <FaSearch className="navbar__search-icon" />
-                </div>
+                </div> */}
                 <ul className="links">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/news">News</Link></li>
