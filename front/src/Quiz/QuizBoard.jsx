@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import Quiz from './Quiz';
+import Quiz from './quiz';
 import "./quiz.scss";
 import { FaCheck } from "react-icons/fa6";
 import { UserContext } from "../context/UserContext";
