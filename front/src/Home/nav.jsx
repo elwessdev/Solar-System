@@ -1,20 +1,25 @@
-import { useContext } from 'react';
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa';
 import "./nav.scss";
 import { UserContext } from "../context/UserContext";
 
-const Navbar = ({navHiding}) => {
+const Navbar = ({navHiding,searchKeyWord,setSearchKeyWord}) => {
+    const navigate = useNavigate();
     const {loginStatus,user,logout}  = useContext(UserContext);
-    // console.log(loginStatus);
+
+    useEffect(()=>{
+        navigate("/")
+    },[searchKeyWord]);
+
     return (
         <nav className={`navbar ${navHiding ? 'hide_nav' : ''}`}>
             <div className="navbar__logo">Solar System</div>
             <div className="rg">
-                {/* <div className="search">
-                    <input type="text" placeholder="Search..." />
+                <div className="search">
+                    <input type="text" placeholder="Search..." value={searchKeyWord} onChange={e=>setSearchKeyWord(e.target.value)} />
                     <FaSearch className="navbar__search-icon" />
-                </div> */}
+                </div>
                 <ul className="links">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/news">News</Link></li>

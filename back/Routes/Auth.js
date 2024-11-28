@@ -91,7 +91,7 @@ router.post('/sendcode', async(req, res) => {
 router.post('/signup', SignUpRules(), validation, async(req, res) => {
     const {username, email, password, otp} = req.body;
     try{
-        console.log(stored_code,otp);
+        // console.log(stored_code,otp);
         if(stored_code === otp){
             const salt = 10;
             const gensalt = await bcrypt.genSalt(salt);
@@ -125,8 +125,8 @@ router.get('/current', isAuth(), (req, res) => {
 // Sign in
 // LoginRules(), validation,
 router.post('/login', async(req, res) => {
-    console.log(req.body);
     const {email, password} = req.body;
+    // console.log(req.body);
     try{
         const searchedUser = await users.findOne({ email });
         if(!searchedUser){

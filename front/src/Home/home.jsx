@@ -17,10 +17,11 @@ import axios from "axios";
 // const PlanetDetails = React.lazy(() => import('./planetDetails'));
 
 
-const Home = ({setNavStatus,navStatus}) => {
-    const { loginStatus } = useContext(UserContext);
+const Home = ({setNavStatus,navStatus,searchKeyWord}) => {
+    const { loginStatus, user } = useContext(UserContext);
     const [planets, setPlanets] = useState([]);
     const [details, setDetails] = useState();
+    const [filteredPlanets, setFilteredPlanets] = useState([]);
 
     const getPlanets = async () => {
         try{
@@ -34,10 +35,27 @@ const Home = ({setNavStatus,navStatus}) => {
             console.log(err, "get planets");
         }
     }
-    useEffect(()=>{
+
+    useEffect(() => {
+        if (searchKeyWord) {
+            const filtered = planets.filter(planet =>
+                planet.name.toLowerCase().includes(searchKeyWord.toLowerCase())
+            );
+            if(filtered.length){
+                setFilteredPlanets(filtered);
+            } else {
+                setFilteredPlanets(planets);
+            }
+        } else {
+            setFilteredPlanets(planets);
+        }
+        // console.log(filteredPlanets);
+    }, [searchKeyWord, planets]);
+
+    useEffect(() => {
         getPlanets();
-        // console.log(details);
-    },[])
+    }, []);
+    console.log(loginStatus, user);
     return(
         <div className="home">
             <Swiper className="planets"
@@ -47,7 +65,7 @@ const Home = ({setNavStatus,navStatus}) => {
                 navigation
                 loop
                 >
-                    {planets.map((planet,idx) =>
+                    {filteredPlanets.map((planet,idx) =>
                             <SwiperSlide className="planet" key={idx}>
                                     <div className={`img ${navStatus ? 'show_details' : ''}`}>
                                         <img src={planet?.imageUrl} alt="Planet 1" />

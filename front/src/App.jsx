@@ -23,12 +23,13 @@ function App() {
 
   const {user} = useContext(UserContext);
   const [navHiding, setNavHiding] = useState(false);
+  const [searchKeyWord, setSearchKeyWord] = useState('');
   return (
     <div className='app'>
       <Router>
-        <Navbar navHiding={navHiding} />
+        <Navbar navHiding={navHiding} searchKeyWord={searchKeyWord} setSearchKeyWord={setSearchKeyWord} />
         <Routes>
-          <Route path="/" element={<Home setNavStatus={setNavHiding} navStatus={navHiding} />} />
+          <Route path="/" element={<Home setNavStatus={setNavHiding} navStatus={navHiding} searchKeyWord={searchKeyWord} />} />
           <Route  path="/signin" element={<ProtectedRoute><SignIn /></ProtectedRoute>} />
           <Route path="/signup" element={<ProtectedRoute><SignUp /></ProtectedRoute>} />
           <Route path="/forgot-password" element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>} />

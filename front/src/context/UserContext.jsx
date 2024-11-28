@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
     const [loginStatus, setLoginStatus] = useState();
     
     const login = (userData, userToken) => {
+        console.log(userData,userToken);
         setUser(userData);
         setToken(userToken);
         localStorage.setItem("jwt",userToken);
