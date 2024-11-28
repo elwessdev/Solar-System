@@ -59,8 +59,10 @@ const QuizManagement = () => {
                   <td>{q.question}</td>
                   <td>{q.difficulty}</td>
                   <td>
-                    <button className="nrml" onClick={() => handleEdit(q.id)}>Edit</button>
-                    <button className="delete" onClick={() => handleDelete(q.id)}>Delete</button>
+                    <div className="btns">
+                      <button className="nrml" onClick={() => handleEdit(q.id)}>Edit</button>
+                      <button className="delete" onClick={() => handleDelete(q.id)}>Delete</button>
+                    </div>
                   </td>
                 </tr>
               ))
