@@ -37,12 +37,12 @@ const News = () => {
         </p>
       </header>
       <section className="news-list">
-        {newsItems.slice(0,loginStatus ?newsItems.length-1 :3).map((item, index) => (
+        {newsItems && newsItems.slice(0,loginStatus ?newsItems.length-1 :3).map((item, index) => (
           <div key={index} className="news-card">
             <img src={item.urlToImage} alt={item.title} className="news-image" />
             <div className="news-content">
               <h2 className="news-title">{item.title}</h2>
-              <p className="news-date">{item.date}</p>
+              <p className="news-date">{item.publishedAt}</p>
               <p className="news-description">{item.content}</p>
                 <a className="news-viewmore" target="_blank" href={item.url}>View More</a>
             </div>
