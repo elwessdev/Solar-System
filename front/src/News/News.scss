@@ -46,14 +46,15 @@ body {
 
     .news-card {
       cursor: context-menu;
-      background-color: $secondary-color;
+      background-color: #121212;
       border-radius: 10px;
       overflow: hidden;
-    //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      transition: all .2s;
+      transition: all 0.2s;
       position: relative;
-      border: 1px solid #eeeeee6e;
-      box-shadow: 1px 6px 7px 1px #eeeeee1c;
+      border: 1px solid rgba(238, 238, 238, 0.431372549);
+      box-shadow: 1px 6px 7px 1px rgba(238, 238, 238, 0.1098039216);
+      // height: 420px;
+      padding-bottom: 65px;
 
       &:hover {
         transform: translateY(-5px);
@@ -85,23 +86,32 @@ body {
             text-align: left;
             font-weight: 500;
             font-size: 14px;
-            line-height: 1.5;
+            margin: 0;
+            text-transform: capitalize;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 5;
+            transition: all 0.2s;
         }
 
         .news-viewmore {
             padding: 11px 20px;
             cursor: pointer;
-            transition: all .2s;
+            transition: all 0.2s;
             background: none;
             color: #fff;
             border: 1px solid #FFF;
             font-size: 12px;
             font-weight: 700;
             text-decoration: none;
-            margin: 0 0 0 auto;
             display: block;
             width: fit-content;
-            margin-top: 35px;
+            margin: 0;
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
             &:hover {
                 background: rgba(201, 201, 201, 0.1803921569);
             }
